@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>BTC Pro Elite | تحليل البيتكوين بالذكاء الاصطناعي</title>
+    <title>BTC Pro | تحليل البيتكوين بالذكاء الاصطناعي</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
 
         body {
             background: radial-gradient(ellipse at 30% 40%, #0a0a0f 0%, #020205 100%);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             padding: 16px;
             min-height: 100vh;
         }
@@ -28,57 +28,46 @@
             background: linear-gradient(135deg, rgba(15, 25, 45, 0.9), rgba(10, 15, 30, 0.95));
             backdrop-filter: blur(20px);
             border-radius: 48px;
-            padding: 24px 20px;
+            padding: 20px;
             margin-bottom: 20px;
             text-align: center;
             border: 1px solid rgba(247, 147, 26, 0.3);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
         }
 
         .logo {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 8px;
+            gap: 8px;
         }
 
         .btc-logo {
-            font-size: 2.2rem;
-            filter: drop-shadow(0 0 8px #f7931a);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-3px); }
+            font-size: 2rem;
         }
 
         h1 {
-            font-size: 1.5rem;
-            background: linear-gradient(135deg, #f7931a, #ffd700, #f7931a);
+            font-size: 1.4rem;
+            background: linear-gradient(135deg, #f7931a, #ffd700);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.5px;
         }
 
         .sub {
             color: #888;
             font-size: 0.6rem;
-            letter-spacing: 1px;
+            margin-top: 5px;
         }
 
         .badge-container {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-top: 14px;
+            gap: 8px;
+            margin-top: 12px;
             flex-wrap: wrap;
         }
 
         .badge {
-            padding: 5px 14px;
+            padding: 4px 12px;
             border-radius: 30px;
             font-size: 0.6rem;
             font-weight: 600;
@@ -87,7 +76,6 @@
         .badge-ai {
             background: linear-gradient(135deg, #7b2ff7, #9b4dff);
             color: white;
-            animation: pulse-light 2s infinite;
         }
 
         .badge-live {
@@ -99,118 +87,97 @@
 
         @keyframes blink {
             0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            50% { opacity: 0.6; }
         }
 
-        @keyframes pulse-light {
-            0%, 100% { box-shadow: 0 0 0px #9b4dff; }
-            50% { box-shadow: 0 0 10px #9b4dff; }
-        }
-
-        /* بطاقة السعر */
+        /* Price Card */
         .price-card {
             background: linear-gradient(135deg, rgba(247, 147, 26, 0.08), rgba(0, 0, 0, 0.6));
             backdrop-filter: blur(20px);
             border-radius: 48px;
-            padding: 28px 20px;
+            padding: 24px;
             margin-bottom: 20px;
             text-align: center;
             border: 1px solid rgba(247, 147, 26, 0.25);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
         .price-label {
             color: #888;
             font-size: 0.7rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .price-value {
-            font-size: 2.6rem;
+            font-size: 2.4rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #f7931a, #ffd700);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-family: 'Courier New', monospace;
+            color: #f7931a;
+            font-family: monospace;
             margin: 10px 0;
-            text-shadow: 0 0 20px rgba(247, 147, 26, 0.2);
         }
 
         .price-change {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            padding: 6px 18px;
+            gap: 5px;
+            padding: 5px 15px;
             border-radius: 40px;
-            font-weight: 700;
+            font-weight: 600;
             font-size: 0.9rem;
         }
 
         .change-up {
-            background: linear-gradient(135deg, #00ff8822, #00ff8808);
+            background: #00ff8822;
             color: #00ff88;
-            border: 1px solid #00ff8844;
         }
 
         .change-down {
-            background: linear-gradient(135deg, #ff444422, #ff444408);
+            background: #ff444422;
             color: #ff4444;
-            border: 1px solid #ff444444;
         }
 
         .stats-row {
             display: flex;
             justify-content: space-between;
             gap: 12px;
-            margin-top: 20px;
+            margin-top: 18px;
         }
 
         .stat-card {
             background: rgba(0, 0, 0, 0.4);
-            border-radius: 24px;
-            padding: 10px;
+            border-radius: 20px;
+            padding: 8px;
             flex: 1;
             text-align: center;
-            backdrop-filter: blur(5px);
         }
 
         .stat-label {
             font-size: 0.55rem;
             color: #666;
-            text-transform: uppercase;
         }
 
         .stat-value {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: bold;
             color: #ffd700;
-            margin-top: 4px;
+            margin-top: 3px;
         }
 
-        /* المؤشرات */
+        /* Indicators */
         .indicators-section {
             background: rgba(15, 20, 35, 0.6);
             backdrop-filter: blur(20px);
             border-radius: 40px;
-            padding: 22px;
+            padding: 20px;
             margin-bottom: 20px;
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 18px;
-        }
-
         .section-title {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: #aaa;
             text-transform: uppercase;
             letter-spacing: 2px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -219,48 +186,45 @@
         .indicators-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            gap: 10px;
         }
 
         .indicator-card {
             background: rgba(0, 0, 0, 0.4);
-            border-radius: 28px;
-            padding: 14px;
+            border-radius: 24px;
+            padding: 12px;
             text-align: center;
-            transition: all 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.03);
         }
 
         .indicator-name {
             font-size: 0.6rem;
             color: #888;
-            text-transform: uppercase;
         }
 
         .indicator-number {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 800;
             font-family: monospace;
             margin-top: 5px;
         }
 
-        .bullish { color: #00ff88; text-shadow: 0 0 5px #00ff8833; }
-        .bearish { color: #ff4444; text-shadow: 0 0 5px #ff444433; }
-        .neutral { color: #ffd700; text-shadow: 0 0 5px #ffd70033; }
+        .bullish { color: #00ff88; }
+        .bearish { color: #ff4444; }
+        .neutral { color: #ffd700; }
 
         .indicator-status {
             font-size: 0.55rem;
-            margin-top: 5px;
+            margin-top: 4px;
             padding: 2px 8px;
             border-radius: 20px;
             display: inline-block;
         }
 
-        /* إشارة AI */
+        /* AI Card */
         .ai-card {
             background: linear-gradient(135deg, rgba(123, 47, 247, 0.12), rgba(0, 0, 0, 0.5));
             backdrop-filter: blur(20px);
-            border-radius: 48px;
+            border-radius: 40px;
             padding: 24px;
             margin-bottom: 20px;
             text-align: center;
@@ -271,34 +235,28 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .ai-icon {
-            font-size: 1.3rem;
+            gap: 8px;
+            margin-bottom: 12px;
         }
 
         .ai-title {
             color: #9b4dff;
-            font-weight: 700;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
+            font-weight: 600;
+            font-size: 0.8rem;
         }
 
         .signal-main {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 800;
-            padding: 20px;
-            border-radius: 40px;
-            margin: 15px 0;
-            transition: all 0.3s;
+            padding: 18px;
+            border-radius: 35px;
+            margin: 12px 0;
         }
 
         .signal-strong-buy {
             background: linear-gradient(135deg, #00ff88, #00b894);
             color: #0a0a0f;
-            animation: pulse-buy 1.5s infinite;
+            animation: pulse 1.5s infinite;
         }
 
         .signal-buy {
@@ -309,7 +267,7 @@
         .signal-strong-sell {
             background: linear-gradient(135deg, #ff4444, #d63031);
             color: white;
-            animation: pulse-sell 1.5s infinite;
+            animation: pulse 1.5s infinite;
         }
 
         .signal-sell {
@@ -322,144 +280,98 @@
             color: #ffd700;
         }
 
-        @keyframes pulse-buy {
-            0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.3); transform: scale(1); }
-            50% { box-shadow: 0 0 45px rgba(0, 255, 136, 0.7); transform: scale(1.01); }
-        }
-
-        @keyframes pulse-sell {
-            0%, 100% { box-shadow: 0 0 20px rgba(255, 68, 68, 0.3); transform: scale(1); }
-            50% { box-shadow: 0 0 45px rgba(255, 68, 68, 0.7); transform: scale(1.01); }
-        }
-
-        .confidence-container {
-            margin: 15px 0;
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.01); }
         }
 
         .confidence-bar {
-            height: 8px;
+            height: 6px;
             background: rgba(0, 0, 0, 0.4);
-            border-radius: 4px;
+            border-radius: 3px;
+            margin: 12px 0;
             overflow: hidden;
         }
 
         .confidence-fill {
             height: 100%;
-            border-radius: 4px;
-            transition: width 0.5s ease;
-        }
-
-        .confidence-stats {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 8px;
-            font-size: 0.65rem;
-            color: #aaa;
+            border-radius: 3px;
+            transition: width 0.3s;
         }
 
         .ai-reason {
             background: rgba(0, 0, 0, 0.3);
-            border-radius: 28px;
-            padding: 14px;
+            border-radius: 24px;
+            padding: 12px;
             font-size: 0.7rem;
             color: #ccc;
-            margin-top: 15px;
+            margin-top: 12px;
             text-align: right;
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
-        /* استراتيجية التداول */
+        /* Strategy */
         .strategy-card {
             background: rgba(15, 20, 35, 0.6);
             backdrop-filter: blur(20px);
             border-radius: 40px;
-            padding: 22px;
+            padding: 20px;
             margin-bottom: 20px;
             border: 1px solid rgba(255, 215, 0, 0.2);
         }
 
-        .strategy-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 18px;
-        }
-
         .strategy-title {
             color: #ffd700;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 2px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .risk-level {
-            font-size: 0.65rem;
-            padding: 4px 12px;
-            border-radius: 30px;
-        }
-
-        .risk-low { background: #00ff8822; color: #00ff88; }
-        .risk-medium { background: #ffd70022; color: #ffd700; }
-        .risk-high { background: #ff444422; color: #ff4444; }
-
         .level-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 16px;
+            padding: 10px 14px;
             background: rgba(0, 0, 0, 0.3);
-            border-radius: 28px;
+            border-radius: 24px;
             margin-bottom: 8px;
-            transition: all 0.2s;
         }
 
         .level-label {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: #888;
         }
 
-        .level-entry { color: #ffd700; font-weight: bold; font-family: monospace; }
-        .level-stop { color: #ff6666; font-weight: bold; font-family: monospace; }
-        .level-tp { color: #00ff88; font-weight: bold; font-family: monospace; }
+        .level-entry { color: #ffd700; font-weight: bold; }
+        .level-stop { color: #ff6666; font-weight: bold; }
+        .level-tp { color: #00ff88; font-weight: bold; }
 
-        .strategy-note {
-            background: rgba(255, 100, 0, 0.08);
-            border-radius: 24px;
-            padding: 12px;
-            margin-top: 12px;
-            font-size: 0.65rem;
-            color: #ffaa66;
-            text-align: center;
-        }
-
-        /* أزرار */
+        /* Buttons */
         .refresh-btn {
             width: 100%;
-            padding: 16px;
+            padding: 14px;
             background: linear-gradient(135deg, #f7931a, #ffd700);
             border: none;
-            border-radius: 60px;
-            font-weight: 700;
+            border-radius: 50px;
+            font-weight: bold;
             font-size: 1rem;
             color: #0a0a0f;
             cursor: pointer;
-            transition: all 0.2s;
             margin-bottom: 12px;
-            box-shadow: 0 4px 15px rgba(247, 147, 26, 0.3);
         }
 
         .refresh-btn:active {
-            transform: scale(0.97);
+            transform: scale(0.98);
         }
 
         .timestamp {
             text-align: center;
             color: #555;
             font-size: 0.55rem;
-            margin-top: 12px;
         }
 
         .footer {
@@ -473,198 +385,98 @@
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
         <div class="header">
             <div class="logo">
                 <span class="btc-logo">₿</span>
-                <h1>BTC Pro Elite</h1>
+                <h1>BTC Pro</h1>
             </div>
-            <div class="sub">Advanced Bitcoin Trading Intelligence Platform</div>
+            <div class="sub">تحليل البيتكوين بالذكاء الاصطناعي</div>
             <div class="badge-container">
-                <span class="badge badge-ai">🧠 AI Neural Analysis</span>
-                <span class="badge badge-live">● LIVE WEBSOCKET</span>
-                <span class="badge">📊 6 Indicators</span>
+                <span class="badge badge-ai">🧠 AI Analysis</span>
+                <span class="badge badge-live">● LIVE</span>
             </div>
         </div>
 
-        <!-- السعر -->
+        <!-- Price -->
         <div class="price-card">
-            <div class="price-label">BTC/USDT SPOT</div>
+            <div class="price-label">BTC/USDT</div>
             <div class="price-value" id="price">$---</div>
             <div id="changeDisplay"></div>
             <div class="stats-row">
                 <div class="stat-card"><div class="stat-label">24h High</div><div class="stat-value" id="high">---</div></div>
                 <div class="stat-card"><div class="stat-label">24h Low</div><div class="stat-value" id="low">---</div></div>
-                <div class="stat-card"><div class="stat-label">24h Volume</div><div class="stat-value" id="volume">---</div></div>
+                <div class="stat-card"><div class="stat-label">Volume</div><div class="stat-value" id="volume">---</div></div>
             </div>
         </div>
 
-        <!-- المؤشرات -->
+        <!-- Indicators -->
         <div class="indicators-section">
-            <div class="section-header">
-                <div class="section-title"><span>📊</span> التحليل الفني</div>
-                <div style="font-size:0.55rem; color:#555;">Real-time | 1h Timeframe</div>
-            </div>
+            <div class="section-title">📊 المؤشرات الفنية</div>
             <div class="indicators-grid">
-                <div class="indicator-card">
-                    <div class="indicator-name">RSI (14)</div>
-                    <div class="indicator-number" id="rsi">--</div>
-                    <div class="indicator-status" id="rsiStatus">---</div>
-                </div>
-                <div class="indicator-card">
-                    <div class="indicator-name">MACD</div>
-                    <div class="indicator-number" id="macd">--</div>
-                    <div class="indicator-status" id="macdStatus">---</div>
-                </div>
-                <div class="indicator-card">
-                    <div class="indicator-name">Moving Avg (7/25)</div>
-                    <div class="indicator-number" id="ema">--</div>
-                    <div class="indicator-status" id="emaStatus">---</div>
-                </div>
-                <div class="indicator-card">
-                    <div class="indicator-name">Stochastic RSI</div>
-                    <div class="indicator-number" id="stoch">--</div>
-                    <div class="indicator-status" id="stochStatus">---</div>
-                </div>
-                <div class="indicator-card">
-                    <div class="indicator-name">Bollinger Bands</div>
-                    <div class="indicator-number" id="bb">--</div>
-                    <div class="indicator-status" id="bbStatus">---</div>
-                </div>
-                <div class="indicator-card">
-                    <div class="indicator-name">Volume Profile</div>
-                    <div class="indicator-number" id="volSign">--</div>
-                    <div class="indicator-status" id="volStatus">---</div>
-                </div>
+                <div class="indicator-card"><div class="indicator-name">RSI (14)</div><div class="indicator-number" id="rsi">--</div><div class="indicator-status" id="rsiStatus">---</div></div>
+                <div class="indicator-card"><div class="indicator-name">MACD</div><div class="indicator-number" id="macd">--</div><div class="indicator-status" id="macdStatus">---</div></div>
+                <div class="indicator-card"><div class="indicator-name">EMA (7/25)</div><div class="indicator-number" id="ema">--</div><div class="indicator-status" id="emaStatus">---</div></div>
+                <div class="indicator-card"><div class="indicator-name">Stochastic</div><div class="indicator-number" id="stoch">--</div><div class="indicator-status" id="stochStatus">---</div></div>
+                <div class="indicator-card"><div class="indicator-name">Bollinger</div><div class="indicator-number" id="bb">--</div><div class="indicator-status" id="bbStatus">---</div></div>
+                <div class="indicator-card"><div class="indicator-name">Volume</div><div class="indicator-number" id="volSign">--</div><div class="indicator-status" id="volStatus">---</div></div>
             </div>
         </div>
 
-        <!-- إشارة AI -->
+        <!-- AI Signal -->
         <div class="ai-card">
             <div class="ai-header">
-                <span class="ai-icon">🧠</span>
-                <span class="ai-title">الذكاء الاصطناعي المتقدم</span>
-                <span class="ai-icon">🤖</span>
+                <span>🧠</span>
+                <span class="ai-title">الذكاء الاصطناعي</span>
+                <span>🤖</span>
             </div>
             <div class="signal-main" id="signalMain">🟡 تحليل السوق</div>
-            <div class="confidence-container">
-                <div class="confidence-bar"><div class="confidence-fill" id="confidenceFill" style="width:0%"></div></div>
-                <div class="confidence-stats">
-                    <span id="confidenceText">الثقة: 0%</span>
-                    <span id="scoreText">شراء:0 | بيع:0</span>
-                </div>
-            </div>
-            <div class="ai-reason" id="aiReason">جاري تحليل البيانات...</div>
+            <div class="confidence-bar"><div class="confidence-fill" id="confidenceFill" style="width:0%"></div></div>
+            <div class="ai-reason" id="aiReason">جاري التحليل...</div>
         </div>
 
-        <!-- استراتيجية التداول -->
+        <!-- Strategy -->
         <div class="strategy-card">
-            <div class="strategy-header">
-                <div class="strategy-title"><span>🎯</span> استراتيجية الدخول والخروج</div>
-                <div class="risk-level" id="riskLevel">المخاطرة: متوسطة</div>
-            </div>
-            <div class="level-item">
-                <span class="level-label">🎯 نقطة الدخول</span>
-                <span class="level-entry" id="entry">$---</span>
-            </div>
-            <div class="level-item">
-                <span class="level-label">🛑 وقف الخسارة (1.5%)</span>
-                <span class="level-stop" id="stopLoss">$---</span>
-            </div>
-            <div class="level-item">
-                <span class="level-label">🎯 TP1 - 2% (هدف أول)</span>
-                <span class="level-tp" id="tp1">$---</span>
-            </div>
-            <div class="level-item">
-                <span class="level-label">🎯 TP2 - 4% (هدف ثاني)</span>
-                <span class="level-tp" id="tp2">$---</span>
-            </div>
-            <div class="level-item">
-                <span class="level-label">🎯 TP3 - 6% (هدف ثالث)</span>
-                <span class="level-tp" id="tp3">$---</span>
-            </div>
-            <div class="strategy-note" id="strategyNote">
-                💡 نسبة المخاطرة 1:4 | إدارة رأس المال ضرورية
-            </div>
+            <div class="strategy-title">🎯 استراتيجية الدخول والخروج</div>
+            <div class="level-item"><span class="level-label">نقطة الدخول</span><span class="level-entry" id="entry">$---</span></div>
+            <div class="level-item"><span class="level-label">وقف الخسارة (1.5%)</span><span class="level-stop" id="stopLoss">$---</span></div>
+            <div class="level-item"><span class="level-label">TP1 - 2%</span><span class="level-tp" id="tp1">$---</span></div>
+            <div class="level-item"><span class="level-label">TP2 - 4%</span><span class="level-tp" id="tp2">$---</span></div>
+            <div class="level-item"><span class="level-label">TP3 - 6%</span><span class="level-tp" id="tp3">$---</span></div>
         </div>
 
-        <button class="refresh-btn" onclick="refreshIndicators()">⟳ تحديث المؤشرات</button>
-        <div class="timestamp" id="timestamp">آخر تحديث: --:--:--</div>
-        <div class="footer">© BTC Pro Elite | Powered by Binance WebSocket (Live) + API | Real-time Analysis</div>
+        <button class="refresh-btn" onclick="refreshData()">⟳ تحديث</button>
+        <div class="timestamp" id="timestamp">--:--:--</div>
+        <div class="footer">BTC Pro | بيانات حية من Binance</div>
     </div>
 
     <script>
-        let lastPrice = null;
         let currentPrice = null;
-        let tickerData = null;
+        let lastPrice = null;
         let priceHistory = [];
-        let volumeHistory = [];
         
-        // WebSocket للسعر الحي
-        let ws = null;
-        
-        function connectWebSocket() {
-            ws = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@trade');
-            
-            ws.onopen = () => {
-                console.log('WebSocket connected - Live prices active');
-                document.getElementById('badge-live').style.opacity = '1';
-            };
-            
-            ws.onmessage = (event) => {
-                const data = JSON.parse(event.data);
-                const price = parseFloat(data.p);
-                currentPrice = price;
-                
-                // تحديث السعر فوراً
-                document.getElementById('price').innerHTML = `$${price.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
-                
-                // حساب التغير
-                if (lastPrice) {
-                    const change = ((price - lastPrice) / lastPrice) * 100;
-                    const changeClass = change >= 0 ? 'change-up' : 'change-down';
-                    const changeSymbol = change >= 0 ? '▲' : '▼';
-                    document.getElementById('changeDisplay').innerHTML = `<div class="price-change ${changeClass}">${changeSymbol} ${Math.abs(change).toFixed(2)}%</div>`;
-                }
-                lastPrice = price;
-            };
-            
-            ws.onerror = (error) => {
-                console.error('WebSocket error:', error);
-            };
-            
-            ws.onclose = () => {
-                console.log('WebSocket disconnected, reconnecting in 5 seconds...');
-                setTimeout(connectWebSocket, 5000);
-            };
-        }
-        
-        // جلب البيانات التاريخية للمؤشرات
-        async function fetchHistoricalData() {
+        // جلب البيانات التاريخية
+        async function fetchHistory() {
             try {
                 const res = await fetch('https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1h&limit=60');
-                const klines = await res.json();
-                priceHistory = klines.map(k => parseFloat(k[4]));
-                volumeHistory = klines.map(k => parseFloat(k[5]));
+                const data = await res.json();
+                priceHistory = data.map(c => parseFloat(c[4]));
                 
-                // جلب بيانات 24h
                 const tickerRes = await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT');
-                tickerData = await tickerRes.json();
+                const ticker = await tickerRes.json();
                 
-                document.getElementById('high').innerHTML = `$${parseFloat(tickerData.highPrice).toLocaleString()}`;
-                document.getElementById('low').innerHTML = `$${parseFloat(tickerData.lowPrice).toLocaleString()}`;
-                document.getElementById('volume').innerHTML = `${(parseFloat(tickerData.volume) / 1000).toFixed(0)}K`;
+                document.getElementById('high').innerHTML = `$${parseFloat(ticker.highPrice).toLocaleString()}`;
+                document.getElementById('low').innerHTML = `$${parseFloat(ticker.lowPrice).toLocaleString()}`;
+                document.getElementById('volume').innerHTML = `${(parseFloat(ticker.volume) / 1000).toFixed(0)}K`;
                 
                 return true;
-            } catch (error) {
-                console.error('Error fetching historical data:', error);
+            } catch(e) {
                 return false;
             }
         }
         
-        // المؤشرات الفنية
+        // RSI
         function calcRSI(prices, period = 14) {
-            if (!prices || prices.length < period + 1) return 50;
+            if (prices.length < period + 1) return 50;
             let gains = 0, losses = 0;
             for (let i = prices.length - period; i < prices.length; i++) {
                 const diff = prices[i] - prices[i-1];
@@ -677,23 +489,26 @@
             return 100 - (100 / (1 + (avgGain / avgLoss)));
         }
         
+        // EMA
         function calcEMA(prices, period) {
-            if (!prices || prices.length < period) return prices ? prices[prices.length-1] : 0;
+            if (prices.length < period) return prices[prices.length-1];
             let ema = prices[0];
-            const multiplier = 2 / (period + 1);
+            const m = 2 / (period + 1);
             for (let i = 1; i < prices.length; i++) {
-                ema = (prices[i] - ema) * multiplier + ema;
+                ema = (prices[i] - ema) * m + ema;
             }
             return ema;
         }
         
+        // MACD
         function calcMACD(prices) {
-            if (!prices || prices.length < 35) return 0;
+            if (prices.length < 35) return 0;
             return calcEMA(prices, 12) - calcEMA(prices, 26);
         }
         
+        // Stochastic
         function calcStochastic(prices, period = 14) {
-            if (!prices || prices.length < period) return 50;
+            if (prices.length < period) return 50;
             const last = prices.slice(-period);
             const high = Math.max(...last);
             const low = Math.min(...last);
@@ -702,8 +517,9 @@
             return ((current - low) / (high - low)) * 100;
         }
         
+        // Bollinger
         function calcBollinger(prices, period = 20) {
-            if (!prices || prices.length < period) return 0;
+            if (prices.length < period) return 0;
             const last = prices.slice(-period);
             const sma = last.reduce((a,b) => a+b, 0) / period;
             const variance = last.reduce((sum, p) => sum + Math.pow(p - sma, 2), 0) / period;
@@ -714,205 +530,167 @@
             return 0;
         }
         
-        function analyzeVolume(volumes) {
-            if (!volumes || volumes.length < 25) return 0;
-            const avg = volumes.slice(-30, -5).reduce((a,b) => a+b, 0) / 25;
-            const current = volumes[volumes.length-1];
-            if (current > avg * 1.5) return 2;
-            if (current > avg * 1.2) return 1;
-            return 0;
+        // WebSocket للسعر الحي
+        function startWebSocket() {
+            const ws = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@trade');
+            
+            ws.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                const price = parseFloat(data.p);
+                currentPrice = price;
+                
+                document.getElementById('price').innerHTML = `$${price.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+                
+                if (lastPrice) {
+                    const change = ((price - lastPrice) / lastPrice) * 100;
+                    const changeClass = change >= 0 ? 'change-up' : 'change-down';
+                    const changeSymbol = change >= 0 ? '▲' : '▼';
+                    document.getElementById('changeDisplay').innerHTML = `<div class="price-change ${changeClass}">${changeSymbol} ${Math.abs(change).toFixed(2)}%</div>`;
+                }
+                lastPrice = price;
+                
+                // تحديث التحليل عند توفر البيانات
+                if (priceHistory.length) {
+                    updateAnalysis();
+                }
+            };
+            
+            ws.onerror = () => console.log('WebSocket error');
+            ws.onclose = () => setTimeout(startWebSocket, 5000);
         }
         
-        function updateIndicatorsAndAnalysis() {
+        // تحليل وتحديث كل المؤشرات
+        function updateAnalysis() {
             if (!currentPrice || !priceHistory.length) return;
             
             const prices = priceHistory;
-            const volumes = volumeHistory;
-            
-            // حساب المؤشرات
             const rsi = calcRSI(prices);
             const macd = calcMACD(prices);
             const stoch = calcStochastic(prices);
             const ema7 = calcEMA(prices, 7);
             const ema25 = calcEMA(prices, 25);
             const bollinger = calcBollinger(prices);
-            const volSignal = analyzeVolume(volumes);
             
-            // نظام التقييم
+            // حساب النقاط
             let buyScore = 0, sellScore = 0;
             let details = [];
             
             // RSI
-            if (rsi < 30) { buyScore += 35; details.push(`RSI ${rsi.toFixed(0)}: 🔥 شراء مفرط`); }
-            else if (rsi < 40) { buyScore += 20; details.push(`RSI ${rsi.toFixed(0)}: ✅ منطقة شراء`); }
-            else if (rsi < 45) { buyScore += 10; details.push(`RSI ${rsi.toFixed(0)}: 📈 ميل للشراء`); }
-            else if (rsi > 70) { sellScore += 35; details.push(`RSI ${rsi.toFixed(0)}: 🔥 بيع مفرط`); }
-            else if (rsi > 60) { sellScore += 20; details.push(`RSI ${rsi.toFixed(0)}: ❌ منطقة بيع`); }
-            else if (rsi > 55) { sellScore += 10; details.push(`RSI ${rsi.toFixed(0)}: 📉 ميل للبيع`); }
-            else { details.push(`RSI ${rsi.toFixed(0)}: ⚪ محايد`); }
+            if (rsi < 35) { buyScore += 35; details.push(`RSI ${rsi.toFixed(0)}: منطقة شراء`); }
+            else if (rsi < 45) { buyScore += 15; details.push(`RSI ${rsi.toFixed(0)}: ميل للشراء`); }
+            else if (rsi > 65) { sellScore += 35; details.push(`RSI ${rsi.toFixed(0)}: منطقة بيع`); }
+            else if (rsi > 55) { sellScore += 15; details.push(`RSI ${rsi.toFixed(0)}: ميل للبيع`); }
+            else { details.push(`RSI ${rsi.toFixed(0)}: محايد`); }
             
             // MACD
-            if (macd > 0.003) { buyScore += 30; details.push(`MACD: 🚀 زخم صاعد قوي`); }
-            else if (macd > 0) { buyScore += 15; details.push(`MACD: ✅ زخم صاعد`); }
-            else if (macd < -0.003) { sellScore += 30; details.push(`MACD: 💥 زخم هابط قوي`); }
-            else if (macd < 0) { sellScore += 15; details.push(`MACD: ❌ زخم هابط`); }
+            if (macd > 0) { buyScore += 25; details.push(`MACD: زخم صاعد`); }
+            else if (macd < 0) { sellScore += 25; details.push(`MACD: زخم هابط`); }
             
             // EMA
-            if (ema7 > ema25) { buyScore += 25; details.push(`📊 الاتجاه: صاعد (EMA7 > EMA25)`); }
-            else { sellScore += 25; details.push(`📊 الاتجاه: هابط (EMA7 < EMA25)`); }
+            if (ema7 > ema25) { buyScore += 25; details.push(`الاتجاه: صاعد`); }
+            else { sellScore += 25; details.push(`الاتجاه: هابط`); }
             
             // Stochastic
-            if (stoch < 20) { buyScore += 20; details.push(`Stochastic ${stoch.toFixed(0)}: 🎯 تشبع شراء`); }
-            else if (stoch < 30) { buyScore += 10; details.push(`Stochastic ${stoch.toFixed(0)}: 📈 منطقة شراء`); }
-            else if (stoch > 80) { sellScore += 20; details.push(`Stochastic ${stoch.toFixed(0)}: 🎯 تشبع بيع`); }
-            else if (stoch > 70) { sellScore += 10; details.push(`Stochastic ${stoch.toFixed(0)}: 📉 منطقة بيع`); }
+            if (stoch < 25) { buyScore += 20; details.push(`Stochastic ${stoch.toFixed(0)}: تشبع شراء`); }
+            else if (stoch > 75) { sellScore += 20; details.push(`Stochastic ${stoch.toFixed(0)}: تشبع بيع`); }
             
             // Bollinger
-            if (bollinger === -1) { buyScore += 15; details.push(`Bollinger: 📍 سعر عند القاع - فرصة`); }
-            else if (bollinger === 1) { sellScore += 15; details.push(`Bollinger: 📍 سعر عند القمة - حذر`); }
+            if (bollinger === -1) { buyScore += 15; details.push(`Bollinger: سعر عند القاع`); }
+            else if (bollinger === 1) { sellScore += 15; details.push(`Bollinger: سعر عند القمة`); }
             
-            // Volume
-            if (volSignal === 2) {
-                if (buyScore > sellScore) { buyScore += 12; details.push(`Volume: 🔥 حجم مرتفع يدعم الصعود`); }
-                else { sellScore += 12; details.push(`Volume: 🔥 حجم مرتفع يدعم الهبوط`); }
-            } else if (volSignal === 1) {
-                if (buyScore > sellScore) { buyScore += 6; details.push(`Volume: ✅ حجم جيد`); }
-                else { sellScore += 6; details.push(`Volume: ✅ حجم جيد`); }
-            }
+            const confidence = Math.min(100, Math.round((Math.max(buyScore, sellScore) / 85) * 100));
             
-            const confidence = Math.min(100, Math.round((Math.max(buyScore, sellScore) / 100) * 100));
-            
-            // تحديد الإشارة
-            let signal = 'neutral';
+            // الإشارة
             let signalText = '🟡 انتظار';
             let signalClass = 'signal-neutral';
             
             if (buyScore >= 45 && buyScore > sellScore) {
                 if (buyScore >= 65) {
-                    signal = 'strong-buy';
-                    signalText = '🟢 شراء قوي جداً';
+                    signalText = '🟢 شراء قوي';
                     signalClass = 'signal-strong-buy';
                 } else {
-                    signal = 'buy';
                     signalText = '🟢 شراء';
                     signalClass = 'signal-buy';
                 }
             } else if (sellScore >= 45 && sellScore > buyScore) {
                 if (sellScore >= 65) {
-                    signal = 'strong-sell';
-                    signalText = '🔴 بيع قوي جداً';
+                    signalText = '🔴 بيع قوي';
                     signalClass = 'signal-strong-sell';
                 } else {
-                    signal = 'sell';
                     signalText = '🔴 بيع';
                     signalClass = 'signal-sell';
                 }
             }
             
-            // حساب المستويات
-            const isBuy = signal === 'buy' || signal === 'strong-buy';
+            // تحديث واجهة المؤشرات
+            document.getElementById('rsi').innerHTML = rsi.toFixed(1);
+            document.getElementById('rsi').className = `indicator-number ${rsi < 45 ? 'bullish' : (rsi > 55 ? 'bearish' : 'neutral')}`;
+            document.getElementById('rsiStatus').innerHTML = rsi < 35 ? 'شراء' : (rsi > 65 ? 'بيع' : 'محايد');
+            
+            document.getElementById('macd').innerHTML = macd > 0 ? `+${macd.toFixed(4)}` : macd.toFixed(4);
+            document.getElementById('macd').className = `indicator-number ${macd > 0 ? 'bullish' : 'bearish'}`;
+            document.getElementById('macdStatus').innerHTML = macd > 0 ? 'صاعد' : 'هابط';
+            
+            document.getElementById('ema').innerHTML = `${Math.round(ema7)} / ${Math.round(ema25)}`;
+            document.getElementById('ema').className = `indicator-number ${ema7 > ema25 ? 'bullish' : 'bearish'}`;
+            document.getElementById('emaStatus').innerHTML = ema7 > ema25 ? 'صاعد' : 'هابط';
+            
+            document.getElementById('stoch').innerHTML = stoch.toFixed(0);
+            document.getElementById('stoch').className = `indicator-number ${stoch < 30 ? 'bullish' : (stoch > 70 ? 'bearish' : 'neutral')}`;
+            document.getElementById('stochStatus').innerHTML = stoch < 25 ? 'شراء' : (stoch > 75 ? 'بيع' : 'وسط');
+            
+            document.getElementById('bb').innerHTML = bollinger === -1 ? 'سفلي' : (bollinger === 1 ? 'علوي' : 'وسط');
+            document.getElementById('bb').className = `indicator-number ${bollinger === -1 ? 'bullish' : (bollinger === 1 ? 'bearish' : 'neutral')}`;
+            document.getElementById('bbStatus').innerHTML = bollinger === -1 ? 'فرصة' : (bollinger === 1 ? 'حذر' : 'محايد');
+            
+            // إشارة AI
+            document.getElementById('signalMain').innerHTML = signalText;
+            document.getElementById('signalMain').className = `signal-main ${signalClass}`;
+            document.getElementById('confidenceFill').style.width = `${confidence}%`;
+            document.getElementById('confidenceFill').style.background = confidence >= 65 ? '#00ff88' : (confidence >= 45 ? '#ffd700' : '#ffaa44');
+            
+            const summary = buyScore > sellScore ? '📈 ميل للصعود' : (sellScore > buyScore ? '📉 ميل للهبوط' : '⚖️ مؤشرات متضاربة');
+            document.getElementById('aiReason').innerHTML = `
+                <strong>🧠 تحليل الذكاء الاصطناعي</strong><br>
+                ${summary}<br>
+                الثقة: ${confidence}% | شراء: ${buyScore} | بيع: ${sellScore}<br><br>
+                📊 ${details.slice(0, 4).join(' • ')}
+            `;
+            
+            // المستويات
+            const isBuy = signalText.includes('شراء');
             const entry = currentPrice;
             const stopLoss = isBuy ? entry * 0.985 : entry * 1.015;
             const tp1 = isBuy ? entry * 1.02 : entry * 0.98;
             const tp2 = isBuy ? entry * 1.04 : entry * 0.96;
             const tp3 = isBuy ? entry * 1.06 : entry * 0.94;
             
-            // الخلاصة
-            let summary = '';
-            if (buyScore > sellScore + 20) summary = '📈 اتجاه صاعد قوي، فرصة شراء ممتازة';
-            else if (sellScore > buyScore + 20) summary = '📉 اتجاه هابط قوي، تجنب الشراء';
-            else if (buyScore > sellScore) summary = '📈 ميل للصعود، انتظر تأكيد إضافي';
-            else if (sellScore > buyScore) summary = '📉 ميل للهبوط، حذر مطلوب';
-            else summary = '⚖️ مؤشرات متضاربة، الأفضل الانتظار';
-            
-            // تحديث واجهة المؤشرات
-            const updateIndicator = (id, value, status, direction) => {
-                const el = document.getElementById(id);
-                el.innerHTML = value;
-                el.className = `indicator-number ${direction}`;
-                document.getElementById(`${id}Status`).innerHTML = status;
-            };
-            
-            updateIndicator('rsi', rsi.toFixed(1), 
-                rsi < 35 ? 'شراء مفرط' : (rsi > 65 ? 'بيع مفرط' : 'محايد'),
-                rsi < 45 ? 'bullish' : (rsi > 55 ? 'bearish' : 'neutral'));
-            
-            updateIndicator('macd', macd > 0 ? `+${macd.toFixed(4)}` : macd.toFixed(4),
-                macd > 0 ? 'زخم صاعد' : (macd < 0 ? 'زخم هابط' : 'محايد'),
-                macd > 0 ? 'bullish' : (macd < 0 ? 'bearish' : 'neutral'));
-            
-            updateIndicator('ema', `${ema7.toFixed(0)} / ${ema25.toFixed(0)}`,
-                ema7 > ema25 ? 'اتجاه صاعد' : 'اتجاه هابط',
-                ema7 > ema25 ? 'bullish' : 'bearish');
-            
-            updateIndicator('stoch', stoch.toFixed(0),
-                stoch < 25 ? 'تشبع شراء' : (stoch > 75 ? 'تشبع بيع' : 'محايد'),
-                stoch < 30 ? 'bullish' : (stoch > 70 ? 'bearish' : 'neutral'));
-            
-            const bbText = bollinger === -1 ? 'سفلي - فرصة' : (bollinger === 1 ? 'علوي - حذر' : 'وسط');
-            updateIndicator('bb', bollinger === -1 ? 'سفلي' : (bollinger === 1 ? 'علوي' : 'وسط'),
-                bbText,
-                bollinger === -1 ? 'bullish' : (bollinger === 1 ? 'bearish' : 'neutral'));
-            
-            const volText = volSignal === 0 ? 'عادي' : (volSignal === 1 ? 'مرتفع' : 'مرتفع جداً');
-            updateIndicator('volSign', volText,
-                volSignal >= 1 ? 'تأكيد قوي' : 'ضعيف',
-                volSignal >= 1 ? 'bullish' : 'neutral');
-            
-            // تحديث إشارة AI
-            document.getElementById('signalMain').innerHTML = signalText;
-            document.getElementById('signalMain').className = `signal-main ${signalClass}`;
-            document.getElementById('confidenceFill').style.width = `${confidence}%`;
-            document.getElementById('confidenceFill').style.background = confidence >= 65 ? '#00ff88' : (confidence >= 45 ? '#ffd700' : '#ffaa44');
-            document.getElementById('confidenceText').innerHTML = `الثقة: ${confidence}%`;
-            document.getElementById('scoreText').innerHTML = `شراء:${buyScore} | بيع:${sellScore}`;
-            
-            const detailsHtml = details.map(d => `• ${d}`).join('<br>');
-            document.getElementById('aiReason').innerHTML = `
-                <strong>🧠 تحليل الذكاء الاصطناعي المتقدم</strong><br>
-                ${summary}<br><br>
-                <strong>📊 تفاصيل المؤشرات:</strong><br>
-                ${detailsHtml}
-            `;
-            
-            // تحديث المستويات
             document.getElementById('entry').innerHTML = `$${entry.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
             document.getElementById('stopLoss').innerHTML = `$${stopLoss.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
             document.getElementById('tp1').innerHTML = `$${tp1.toLocaleString(undefined, {minimumFractionDigits: 0})}`;
             document.getElementById('tp2').innerHTML = `$${tp2.toLocaleString(undefined, {minimumFractionDigits: 0})}`;
             document.getElementById('tp3').innerHTML = `$${tp3.toLocaleString(undefined, {minimumFractionDigits: 0})}`;
             
-            // مستوى المخاطرة
-            let riskText = 'متوسطة';
-            let riskClass = 'risk-medium';
-            if (confidence >= 70) { riskText = 'منخفضة ✅'; riskClass = 'risk-low'; }
-            else if (confidence <= 40) { riskText = 'مرتفعة ⚠️'; riskClass = 'risk-high'; }
-            const riskEl = document.getElementById('riskLevel');
-            riskEl.innerHTML = `المخاطرة: ${riskText}`;
-            riskEl.className = `risk-level ${riskClass}`;
-            
-            document.getElementById('timestamp').innerHTML = `🕐 آخر تحديث: ${new Date().toLocaleTimeString('ar-EG')} | WebSocket (Live) + Technical Analysis`;
+            document.getElementById('timestamp').innerHTML = `🕐 ${new Date().toLocaleTimeString('ar-EG')} | تحديث لحظي`;
         }
         
-        async function refreshIndicators() {
-            document.getElementById('timestamp').innerHTML = `🕐 جاري تحديث المؤشرات...`;
-            await fetchHistoricalData();
-            updateIndicatorsAndAnalysis();
+        async function refreshData() {
+            await fetchHistory();
+            updateAnalysis();
         }
         
         // بدء التشغيل
         async function init() {
-            connectWebSocket();
-            await fetchHistoricalData();
-            updateIndicatorsAndAnalysis();
-            // تحديث المؤشرات كل دقيقة (البيانات التاريخية)
+            await fetchHistory();
+            startWebSocket();
+            updateAnalysis();
             setInterval(async () => {
-                await fetchHistoricalData();
-                updateIndicatorsAndAnalysis();
+                await fetchHistory();
+                updateAnalysis();
             }, 60000);
         }
         
         init();
     </script>
 </body>
-        </html>
+    </html>
