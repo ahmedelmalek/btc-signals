@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>BTC Data | بيانات البيتكوين الحقيقية</title>
+    <title>BTC Pro Elite | تحليل احترافي مثل المحللين</title>
     <style>
         * {
             margin: 0;
@@ -11,24 +11,24 @@
             box-sizing: border-box;
         }
         body {
-            background: #0a0a0f;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: radial-gradient(ellipse at 30% 40%, #0a0a0f 0%, #020205 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             padding: 16px;
             min-height: 100vh;
         }
         .container {
-            max-width: 550px;
+            max-width: 600px;
             margin: 0 auto;
         }
         
         /* Header */
         .header {
-            background: #111118;
+            background: linear-gradient(135deg, #111118, #0a0a0f);
             border-radius: 32px;
             padding: 20px;
             margin-bottom: 16px;
             text-align: center;
-            border: 1px solid #1a1a22;
+            border: 1px solid #f7931a33;
         }
         h1 {
             color: #f7931a;
@@ -39,25 +39,21 @@
             font-size: 0.6rem;
             margin-top: 5px;
         }
-        .live-dot {
+        .live-badge {
             display: inline-block;
-            width: 8px;
-            height: 8px;
-            background: #00ff88;
-            border-radius: 50%;
-            margin-right: 6px;
-            animation: pulse 1.5s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
+            background: #00ff8822;
+            color: #00ff88;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.6rem;
+            margin-top: 10px;
         }
         
         /* السعر */
         .price-card {
             background: #111118;
             border-radius: 32px;
-            padding: 24px;
+            padding: 20px;
             margin-bottom: 16px;
             text-align: center;
             border: 1px solid #1a1a22;
@@ -67,153 +63,180 @@
             font-weight: 800;
             color: #f7931a;
             font-family: monospace;
-            letter-spacing: -0.5px;
         }
         .change {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
+            display: inline-block;
             padding: 4px 12px;
             border-radius: 20px;
             margin-top: 8px;
             font-weight: 600;
         }
-        .positive { background: #00ff8822; color: #00ff88; }
-        .negative { background: #ff444422; color: #ff4444; }
+        .up { background: #00ff8822; color: #00ff88; }
+        .down { background: #ff444422; color: #ff4444; }
         
-        .stats-row {
-            display: flex;
-            justify-content: space-between;
-            gap: 12px;
-            margin-top: 20px;
-        }
-        .stat {
-            flex: 1;
-            background: #0a0a10;
-            border-radius: 20px;
-            padding: 10px;
-            text-align: center;
-        }
-        .stat-label {
-            font-size: 0.55rem;
-            color: #666;
-        }
-        .stat-value {
-            font-size: 0.8rem;
-            font-weight: bold;
-            color: #ffd700;
-            margin-top: 4px;
-        }
-        
-        /* مؤشرات */
-        .indicators-card {
-            background: #111118;
+        /* التحليل الرئيسي - مثل تحليلي أنا */
+        .analysis-main {
+            background: linear-gradient(135deg, #f7931a11, #111118);
             border-radius: 32px;
+            padding: 24px;
+            margin-bottom: 16px;
+            border: 1px solid #f7931a33;
+        }
+        .trend {
+            text-align: center;
+            padding: 16px;
+            border-radius: 24px;
+            margin-bottom: 16px;
+        }
+        .trend-up { background: #00ff8822; color: #00ff88; }
+        .trend-down { background: #ff444422; color: #ff4444; }
+        .trend-side { background: #ffd70022; color: #ffd700; }
+        .trend-text {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+        
+        .recommendation-box {
+            text-align: center;
+            padding: 20px;
+            border-radius: 28px;
+            margin: 16px 0;
+        }
+        .rec-buy {
+            background: linear-gradient(135deg, #00b894, #00875a);
+            color: white;
+            animation: pulse 1.5s infinite;
+        }
+        .rec-sell {
+            background: linear-gradient(135deg, #d63031, #a01010);
+            color: white;
+            animation: pulse 1.5s infinite;
+        }
+        .rec-wait {
+            background: #2c3e50;
+            color: #ffd700;
+        }
+        .rec-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.01); }
+        }
+        
+        /* مستويات الدعم والمقاومة */
+        .levels-card {
+            background: #111118;
+            border-radius: 28px;
             padding: 20px;
             margin-bottom: 16px;
             border: 1px solid #1a1a22;
         }
-        .section-title {
-            font-size: 0.7rem;
+        .levels-title {
             color: #888;
+            font-size: 0.7rem;
             margin-bottom: 16px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
+        .levels-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .support-box, .resistance-box {
+            flex: 1;
+            background: #0a0a10;
+            border-radius: 20px;
+            padding: 12px;
+            text-align: center;
+        }
+        .support-box h4, .resistance-box h4 {
+            color: #666;
+            font-size: 0.6rem;
+            margin-bottom: 8px;
+        }
+        .support-level {
+            color: #00ff88;
+            font-weight: bold;
+            font-family: monospace;
+        }
+        .resistance-level {
+            color: #ff4444;
+            font-weight: bold;
+            font-family: monospace;
+        }
+        
+        /* المؤشرات السريعة */
+        .indicators-card {
+            background: #111118;
+            border-radius: 28px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border: 1px solid #1a1a22;
+        }
         .indicators-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
+            margin-top: 12px;
         }
-        .indicator-item {
+        .ind-item {
             background: #0a0a10;
-            border-radius: 24px;
-            padding: 14px;
+            border-radius: 20px;
+            padding: 12px;
             text-align: center;
         }
-        .indicator-name {
+        .ind-name {
             font-size: 0.6rem;
             color: #888;
         }
-        .indicator-value {
-            font-size: 1.3rem;
+        .ind-value {
+            font-size: 1.1rem;
             font-weight: bold;
-            font-family: monospace;
-            margin-top: 6px;
+            margin-top: 5px;
         }
-        .value-up { color: #00ff88; }
-        .value-down { color: #ff4444; }
-        .value-neutral { color: #ffd700; }
+        .bullish { color: #00ff88; }
+        .bearish { color: #ff4444; }
+        .neutral { color: #ffd700; }
         
-        .indicator-desc {
-            font-size: 0.55rem;
-            margin-top: 6px;
-            color: #555;
-        }
-        
-        /* تحليل بسيط */
-        .analysis-card {
-            background: #111118;
-            border-radius: 32px;
-            padding: 20px;
-            margin-bottom: 16px;
-            border: 1px solid #1a1a22;
-        }
-        .analysis-summary {
+        /* التوصية المنطوقة */
+        .verdict {
             background: #0a0a10;
             border-radius: 20px;
             padding: 16px;
-            text-align: center;
-        }
-        .analysis-direction {
-            font-size: 1.1rem;
-            font-weight: bold;
-        }
-        .direction-up { color: #00ff88; }
-        .direction-down { color: #ff4444; }
-        .direction-neutral { color: #ffd700; }
-        .analysis-details {
-            font-size: 0.7rem;
-            color: #aaa;
-            margin-top: 12px;
-            line-height: 1.6;
+            margin-top: 16px;
             text-align: right;
+            line-height: 1.6;
+            font-size: 0.8rem;
+            color: #ccc;
         }
         
-        /* المستويات */
-        .levels-card {
+        /* استراتيجية الدخول */
+        .strategy-card {
             background: #111118;
-            border-radius: 32px;
+            border-radius: 28px;
             padding: 20px;
             margin-bottom: 16px;
             border: 1px solid #1a1a22;
         }
-        .level-row {
+        .strat-row {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
+            padding: 12px 0;
             border-bottom: 1px solid #1a1a22;
         }
-        .level-label {
-            font-size: 0.7rem;
-            color: #888;
-        }
-        .level-entry { color: #ffd700; font-weight: bold; }
-        .level-stop { color: #ff6666; font-weight: bold; }
-        .level-tp { color: #00ff88; font-weight: bold; }
         
-        /* أزرار */
-        .refresh-btn {
+        button {
             width: 100%;
             padding: 14px;
             background: linear-gradient(135deg, #f7931a, #ffd700);
             border: none;
-            border-radius: 40px;
+            border-radius: 30px;
             font-weight: bold;
-            font-size: 1rem;
-            color: #0a0a0f;
             cursor: pointer;
             margin-bottom: 12px;
         }
@@ -236,71 +259,85 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>₿ BTC Data</h1>
-            <div class="sub"><span class="live-dot"></span> بيانات حقيقية من Binance | ليست نصيحة استثمارية</div>
+            <h1>₿ BTC Pro Elite</h1>
+            <div class="sub">تحليل احترافي مثل المحللين</div>
+            <div class="live-badge">● LIVE DATA | تحليل آلي</div>
         </div>
 
-        <!-- السعر -->
         <div class="price-card">
             <div class="price-value" id="price">$---</div>
             <div id="changeDisplay"></div>
-            <div class="stats-row">
-                <div class="stat"><div class="stat-label">أعلى 24h</div><div class="stat-value" id="high">---</div></div>
-                <div class="stat"><div class="stat-label">أدنى 24h</div><div class="stat-value" id="low">---</div></div>
-                <div class="stat"><div class="stat-label">حجم 24h</div><div class="stat-value" id="volume">---</div></div>
+            <div style="display: flex; justify-content: space-between; margin-top: 15px;">
+                <div><span style="color:#666;font-size:0.6rem;">أعلى 24h</span><br><span id="high" style="color:#ffd700;">---</span></div>
+                <div><span style="color:#666;font-size:0.6rem;">أدنى 24h</span><br><span id="low" style="color:#ffd700;">---</span></div>
+                <div><span style="color:#666;font-size:0.6rem;">الحجم</span><br><span id="volume" style="color:#ffd700;">---</span></div>
             </div>
         </div>
 
-        <!-- المؤشرات -->
-        <div class="indicators-card">
-            <div class="section-title"><span>📊</span> المؤشرات الفنية (حقيقية من Binance)</div>
-            <div class="indicators-grid">
-                <div class="indicator-item">
-                    <div class="indicator-name">RSI (14)</div>
-                    <div class="indicator-value" id="rsiVal">--</div>
-                    <div class="indicator-desc" id="rsiDesc">---</div>
-                </div>
-                <div class="indicator-item">
-                    <div class="indicator-name">MACD</div>
-                    <div class="indicator-value" id="macdVal">--</div>
-                    <div class="indicator-desc" id="macdDesc">---</div>
-                </div>
-                <div class="indicator-item">
-                    <div class="indicator-name">المتوسطات</div>
-                    <div class="indicator-value" id="emaVal">--</div>
-                    <div class="indicator-desc" id="emaDesc">---</div>
-                </div>
-                <div class="indicator-item">
-                    <div class="indicator-name">ستوكاستيك</div>
-                    <div class="indicator-value" id="stoVal">--</div>
-                    <div class="indicator-desc" id="stoDesc">---</div>
-                </div>
+        <!-- التحليل الرئيسي - مثل تحليلي أنا -->
+        <div class="analysis-main">
+            <div class="trend" id="trendBox">
+                <div class="trend-text" id="trendText">جاري التحليل...</div>
+            </div>
+            
+            <div class="recommendation-box" id="recBox">
+                <div class="rec-text" id="recText">🟡 تحليل السوق</div>
             </div>
         </div>
 
-        <!-- تحليل مبسط -->
-        <div class="analysis-card">
-            <div class="analysis-summary">
-                <div class="analysis-direction" id="direction">🟡 تحليل السوق</div>
-                <div class="analysis-details" id="analysisDetails">جاري تحليل البيانات...</div>
-            </div>
-        </div>
-
-        <!-- مستويات الدخول والخروج -->
+        <!-- مستويات الدعم والمقاومة (مثل التي أرسمها يدوياً) -->
         <div class="levels-card">
-            <div class="section-title"><span>🎯</span> مستويات تداول مقترحة (للتعلم فقط)</div>
-            <div class="level-row"><span class="level-label">📌 السعر الحالي</span><span class="level-entry" id="entry">$---</span></div>
-            <div class="level-row"><span class="level-label">🛑 وقف خسارة مقترح</span><span class="level-stop" id="sl">$---</span></div>
-            <div class="level-row"><span class="level-label">🎯 هدف أول (2%)</span><span class="level-tp" id="tp1">$---</span></div>
-            <div class="level-row"><span class="level-label">🎯 هدف ثاني (4%)</span><span class="level-tp" id="tp2">$---</span></div>
-            <div class="level-row"><span class="level-label">🎯 هدف ثالث (6%)</span><span class="level-tp" id="tp3">$---</span></div>
+            <div class="levels-title">📊 مستويات الدعم والمقاومة (تحليل آلي)</div>
+            <div class="levels-grid">
+                <div class="support-box">
+                    <h4>📉 مستويات الدعم</h4>
+                    <div id="support1" class="support-level">---</div>
+                    <div id="support2" class="support-level">---</div>
+                    <div id="support3" class="support-level">---</div>
+                </div>
+                <div class="resistance-box">
+                    <h4>📈 مستويات المقاومة</h4>
+                    <div id="resistance1" class="resistance-level">---</div>
+                    <div id="resistance2" class="resistance-level">---</div>
+                    <div id="resistance3" class="resistance-level">---</div>
+                </div>
+            </div>
         </div>
 
-        <button class="refresh-btn" onclick="refreshAll()">⟳ تحديث البيانات</button>
+        <!-- المؤشرات السريعة -->
+        <div class="indicators-card">
+            <div class="levels-title">📊 المؤشرات الفنية</div>
+            <div class="indicators-grid">
+                <div class="ind-item"><div class="ind-name">RSI (14)</div><div class="ind-value" id="rsi">--</div></div>
+                <div class="ind-item"><div class="ind-name">MACD</div><div class="ind-value" id="macd">--</div></div>
+                <div class="ind-item"><div class="ind-name">الاتجاه</div><div class="ind-value" id="trendInd">--</div></div>
+                <div class="ind-item"><div class="ind-name">الزخم</div><div class="ind-value" id="momentum">--</div></div>
+            </div>
+        </div>
+
+        <!-- التوصية المنطوقة -->
+        <div class="strategy-card">
+            <div class="levels-title">🎯 التحليل والخلاصة</div>
+            <div class="verdict" id="verdict">
+                جاري التحليل...
+            </div>
+        </div>
+
+        <!-- استراتيجية الدخول -->
+        <div class="strategy-card">
+            <div class="levels-title">📋 استراتيجية مقترحة (تعليمي)</div>
+            <div class="strat-row"><span>📍 السعر الحالي</span><span id="entry" class="level-entry">$---</span></div>
+            <div class="strat-row"><span>🛑 وقف الخسارة</span><span id="sl" class="level-stop">$---</span></div>
+            <div class="strat-row"><span>🎯 الهدف الأول (2%)</span><span id="tp1" class="level-tp">$---</span></div>
+            <div class="strat-row"><span>🎯 الهدف الثاني (4%)</span><span id="tp2" class="level-tp">$---</span></div>
+            <div class="strat-row"><span>🎯 الهدف الثالث (6%)</span><span id="tp3" class="level-tp">$---</span></div>
+        </div>
+
+        <button onclick="forceRefresh()">⟳ تحديث التحليل</button>
         <div class="timestamp" id="timestamp">--:--:--</div>
         <div class="disclaimer">
-            ⚠️ هذه البيانات والمؤشرات هي أدوات تحليلية فقط<br>
-            لا تقدم أي ضمانات للربح. التداول ينطوي على مخاطر عالية.
+            ⚠️ هذا تحليل آلي تعليمي بناءً على بيانات حقيقية.<br>
+            ليس نصيحة استثمارية. التداول ينطوي على مخاطر عالية.
         </div>
     </div>
 
@@ -308,22 +345,22 @@
         let currentPrice = null;
         let lastPrice = null;
         let priceHistory = [];
-        let lastUpdateTime = null;
+        let high24h = 0, low24h = 0;
 
-        // جلب البيانات التاريخية
-        async function fetchHistory() {
+        // جلب البيانات
+        async function fetchData() {
             try {
-                const res = await fetch('https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1h&limit=60');
-                const data = await res.json();
-                priceHistory = data.map(c => parseFloat(c[4]));
+                const klineRes = await fetch('https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1h&limit=100');
+                const klineData = await klineRes.json();
+                priceHistory = klineData.map(c => parseFloat(c[4]));
                 
                 const tickerRes = await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT');
                 const ticker = await tickerRes.json();
-                
-                document.getElementById('high').innerHTML = `$${parseFloat(ticker.highPrice).toLocaleString()}`;
-                document.getElementById('low').innerHTML = `$${parseFloat(ticker.lowPrice).toLocaleString()}`;
+                high24h = parseFloat(ticker.highPrice);
+                low24h = parseFloat(ticker.lowPrice);
+                document.getElementById('high').innerHTML = `$${high24h.toLocaleString()}`;
+                document.getElementById('low').innerHTML = `$${low24h.toLocaleString()}`;
                 document.getElementById('volume').innerHTML = `${(parseFloat(ticker.volume) / 1000).toFixed(0)}K`;
-                
                 return true;
             } catch(e) {
                 return false;
@@ -332,7 +369,7 @@
 
         // RSI
         function calcRSI(prices, period = 14) {
-            if (prices.length < period + 1) return { value: 50, interpretation: 'بيانات غير كافية' };
+            if (prices.length < period + 1) return 50;
             let gains = 0, losses = 0;
             for (let i = prices.length - period; i < prices.length; i++) {
                 const diff = prices[i] - prices[i-1];
@@ -341,18 +378,8 @@
             }
             const avgGain = gains / period;
             const avgLoss = losses / period;
-            if (avgLoss === 0) return { value: 100, interpretation: 'قوي جداً - تشبع شرائي' };
-            const rsi = 100 - (100 / (1 + (avgGain / avgLoss)));
-            
-            let interpretation = '';
-            if (rsi < 30) interpretation = 'منخفض جداً - منطقة تشبع شرائي (قد يكون شراء)';
-            else if (rsi < 40) interpretation = 'منخفض - ميل للصعود';
-            else if (rsi < 50) interpretation = 'متوسط منخفض - محايد مائل للشراء';
-            else if (rsi < 60) interpretation = 'متوسط مرتفع - محايد مائل للبيع';
-            else if (rsi < 70) interpretation = 'مرتفع - ميل للهبوط';
-            else interpretation = 'مرتفع جداً - منطقة تشبع بيعي (قد يكون بيع)';
-            
-            return { value: rsi, interpretation };
+            if (avgLoss === 0) return 100;
+            return 100 - (100 / (1 + (avgGain / avgLoss)));
         }
 
         // EMA
@@ -368,164 +395,214 @@
 
         // MACD
         function calcMACD(prices) {
-            if (prices.length < 35) return { value: 0, interpretation: 'بيانات غير كافية' };
-            const ema12 = calcEMA(prices, 12);
-            const ema26 = calcEMA(prices, 26);
-            const macd = ema12 - ema26;
-            
-            let interpretation = '';
-            if (macd > 0.003) interpretation = 'زخم صاعد قوي جداً';
-            else if (macd > 0.001) interpretation = 'زخم صاعد';
-            else if (macd > 0) interpretation = 'زخم صاعد ضعيف';
-            else if (macd > -0.001) interpretation = 'زخم هابط ضعيف';
-            else if (macd > -0.003) interpretation = 'زخم هابط';
-            else interpretation = 'زخم هابط قوي جداً';
-            
-            return { value: macd, interpretation };
+            if (prices.length < 35) return 0;
+            return calcEMA(prices, 12) - calcEMA(prices, 26);
         }
 
-        // Stochastic
-        function calcStochastic(prices, period = 14) {
-            if (prices.length < period) return { value: 50, interpretation: 'بيانات غير كافية' };
-            const last = prices.slice(-period);
-            const high = Math.max(...last);
-            const low = Math.min(...last);
-            const current = prices[prices.length-1];
-            if (high === low) return { value: 50, interpretation: 'سعر ثابت' };
-            const stoch = ((current - low) / (high - low)) * 100;
+        // تحديد الدعم والمقاومة تلقائياً
+        function findSupportResistance(prices) {
+            const recentPrices = prices.slice(-50);
+            const sorted = [...recentPrices].sort((a,b) => a - b);
+            const length = sorted.length;
             
-            let interpretation = '';
-            if (stoch < 20) interpretation = 'منخفض جداً - منطقة شراء';
-            else if (stoch < 40) interpretation = 'منخفض - قد يصعد';
-            else if (stoch < 60) interpretation = 'متوسط - محايد';
-            else if (stoch < 80) interpretation = 'مرتفع - قد يهبط';
-            else interpretation = 'مرتفع جداً - منطقة بيع';
+            const support1 = sorted[Math.floor(length * 0.1)];
+            const support2 = sorted[Math.floor(length * 0.2)];
+            const support3 = sorted[Math.floor(length * 0.3)];
+            const resistance1 = sorted[Math.floor(length * 0.9)];
+            const resistance2 = sorted[Math.floor(length * 0.85)];
+            const resistance3 = sorted[Math.floor(length * 0.8)];
             
-            return { value: stoch, interpretation };
+            return { support1, support2, support3, resistance1, resistance2, resistance3 };
         }
 
-        // تحديث كل شيء
-        async function updateAll() {
-            if (!priceHistory.length || !currentPrice) return;
+        // التحليل الرئيسي - مثل تحليلي أنا
+        async function comprehensiveAnalysis() {
+            if (!priceHistory.length || !currentPrice) return null;
             
             const prices = priceHistory;
             const rsi = calcRSI(prices);
             const macd = calcMACD(prices);
-            const stoch = calcStochastic(prices);
             const ema7 = calcEMA(prices, 7);
             const ema25 = calcEMA(prices, 25);
+            const levels = findSupportResistance(prices);
             
-            // تحديث RSI
-            document.getElementById('rsiVal').innerHTML = rsi.value.toFixed(1);
-            document.getElementById('rsiVal').className = `indicator-value ${rsi.value < 40 ? 'value-up' : (rsi.value > 60 ? 'value-down' : 'value-neutral')}`;
-            document.getElementById('rsiDesc').innerHTML = rsi.interpretation;
+            // تحليل الاتجاه
+            let trend = 'sideways';
+            let trendText = '🟡 اتجاه جانبي';
+            let trendColor = 'trend-side';
             
-            // تحديث MACD
-            document.getElementById('macdVal').innerHTML = macd.value > 0 ? `+${macd.value.toFixed(4)}` : macd.value.toFixed(4);
-            document.getElementById('macdVal').className = `indicator-value ${macd.value > 0 ? 'value-up' : 'value-down'}`;
-            document.getElementById('macdDesc').innerHTML = macd.interpretation;
+            const last20Prices = prices.slice(-20);
+            const priceChange20 = ((currentPrice - last20Prices[0]) / last20Prices[0]) * 100;
             
-            // تحديث المتوسطات
-            const emaDiff = ema7 > ema25 ? `EMA7 (${Math.round(ema7)}) > EMA25 (${Math.round(ema25)}) - صاعد` : `EMA7 (${Math.round(ema7)}) < EMA25 (${Math.round(ema25)}) - هابط`;
-            document.getElementById('emaVal').innerHTML = `${Math.round(ema7)} / ${Math.round(ema25)}`;
-            document.getElementById('emaVal').className = `indicator-value ${ema7 > ema25 ? 'value-up' : 'value-down'}`;
-            document.getElementById('emaDesc').innerHTML = emaDiff;
-            
-            // تحديث Stochastic
-            document.getElementById('stoVal').innerHTML = stoch.value.toFixed(0);
-            document.getElementById('stoVal').className = `indicator-value ${stoch.value < 40 ? 'value-up' : (stoch.value > 60 ? 'value-down' : 'value-neutral')}`;
-            document.getElementById('stoDesc').innerHTML = stoch.interpretation;
-            
-            // التحليل العام (بدون إشارات قطعية)
-            let upCount = 0;
-            let downCount = 0;
-            
-            if (rsi.value < 40) upCount++;
-            if (rsi.value > 60) downCount++;
-            if (macd.value > 0) upCount++;
-            if (macd.value < 0) downCount++;
-            if (ema7 > ema25) upCount++;
-            if (ema7 < ema25) downCount++;
-            if (stoch.value < 40) upCount++;
-            if (stoch.value > 60) downCount++;
-            
-            let directionText = '';
-            let directionClass = '';
-            let analysisText = '';
-            
-            if (upCount >= 5) {
-                directionText = '📈 ميل للصعود';
-                directionClass = 'direction-up';
-                analysisText = `من أصل 4 مؤشرات، ${upCount} تشير إلى صعود و ${downCount} تشير إلى هبوط. المؤشرات تميل للإيجابية حالياً.`;
-            } else if (downCount >= 5) {
-                directionText = '📉 ميل للهبوط';
-                directionClass = 'direction-down';
-                analysisText = `من أصل 4 مؤشرات، ${downCount} تشير إلى هبوط و ${upCount} تشير إلى صعود. المؤشرات تميل للسلبية حالياً.`;
+            if (priceChange20 > 3) {
+                trend = 'up';
+                trendText = '📈 اتجاه صاعد قوي';
+                trendColor = 'trend-up';
+            } else if (priceChange20 > 1) {
+                trend = 'up';
+                trendText = '📈 اتجاه صاعد';
+                trendColor = 'trend-up';
+            } else if (priceChange20 < -3) {
+                trend = 'down';
+                trendText = '📉 اتجاه هابط قوي';
+                trendColor = 'trend-down';
+            } else if (priceChange20 < -1) {
+                trend = 'down';
+                trendText = '📉 اتجاه هابط';
+                trendColor = 'trend-down';
             } else {
-                directionText = '🟡 مؤشرات متضاربة';
-                directionClass = 'direction-neutral';
-                analysisText = `المؤشرات غير واضحة (صعود:${upCount} / هبوط:${downCount}). السوق في حالة تضارب، الأفضل الانتظار حتى يتضح الاتجاه.`;
+                trendText = '🟡 اتجاه جانبي - تضارب مؤشرات';
+                trendColor = 'trend-side';
             }
             
-            document.getElementById('direction').innerHTML = directionText;
-            document.getElementById('direction').className = `analysis-direction ${directionClass}`;
-            document.getElementById('analysisDetails').innerHTML = analysisText;
+            document.getElementById('trendBox').className = `trend ${trendColor}`;
+            document.getElementById('trendText').innerHTML = trendText;
             
-            // تحديث المستويات (تعليمية فقط)
-            document.getElementById('entry').innerHTML = `$${currentPrice.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
-            document.getElementById('sl').innerHTML = `$${(currentPrice * 0.985).toLocaleString(undefined, {minimumFractionDigits: 2})} (1.5%)`;
-            document.getElementById('tp1').innerHTML = `$${(currentPrice * 1.02).toLocaleString(undefined, {minimumFractionDigits: 0})} (2%)`;
-            document.getElementById('tp2').innerHTML = `$${(currentPrice * 1.04).toLocaleString(undefined, {minimumFractionDigits: 0})} (4%)`;
-            document.getElementById('tp3').innerHTML = `$${(currentPrice * 1.06).toLocaleString(undefined, {minimumFractionDigits: 0})} (6%)`;
+            // حساب نقاط القرار
+            let buyScore = 0, sellScore = 0;
+            let analysisPoints = [];
+            
+            // RSI
+            if (rsi < 35) { buyScore += 30; analysisPoints.push(`RSI ${rsi.toFixed(0)}: منخفض جداً - منطقة شراء محتملة`); }
+            else if (rsi < 45) { buyScore += 15; analysisPoints.push(`RSI ${rsi.toFixed(0)}: منخفض - ميل للصعود`); }
+            else if (rsi > 65) { sellScore += 30; analysisPoints.push(`RSI ${rsi.toFixed(0)}: مرتفع جداً - منطقة بيع محتملة`); }
+            else if (rsi > 55) { sellScore += 15; analysisPoints.push(`RSI ${rsi.toFixed(0)}: مرتفع - ميل للهبوط`); }
+            else { analysisPoints.push(`RSI ${rsi.toFixed(0)}: محايد`); }
+            
+            // MACD - زخم
+            if (macd > 0.003) { buyScore += 25; analysisPoints.push(`MACD: زخم صاعد قوي`); }
+            else if (macd > 0) { buyScore += 12; analysisPoints.push(`MACD: زخم صاعد خفيف`); }
+            else if (macd < -0.003) { sellScore += 25; analysisPoints.push(`MACD: زخم هابط قوي`); }
+            else if (macd < 0) { sellScore += 12; analysisPoints.push(`MACD: زخم هابط خفيف`); }
+            
+            // المتوسطات - الاتجاه
+            if (ema7 > ema25) { buyScore += 25; analysisPoints.push(`المتوسطات: EMA7 فوق EMA25 - صاعد`); }
+            else { sellScore += 25; analysisPoints.push(`المتوسطات: EMA7 تحت EMA25 - هابط`); }
+            
+            // السعر بالنسبة للدعم والمقاومة
+            if (currentPrice <= levels.support1 * 1.01) {
+                buyScore += 20;
+                analysisPoints.push(`السعر عند دعم قوي (${levels.support1.toFixed(0)}) - ارتداد محتمل`);
+            } else if (currentPrice >= levels.resistance1 * 0.99) {
+                sellScore += 20;
+                analysisPoints.push(`السعر عند مقاومة قوية (${levels.resistance1.toFixed(0)}) - هبوط محتمل`);
+            }
+            
+            const confidence = Math.min(100, Math.round((Math.max(buyScore, sellScore) / 100) * 100));
+            
+            // التوصية النهائية
+            let recommendation = 'wait';
+            let recText = '🟡 انتظار';
+            let recClass = 'rec-wait';
+            let verdictText = '';
+            
+            if (buyScore >= 50 && buyScore > sellScore) {
+                recommendation = 'buy';
+                if (buyScore >= 70) {
+                    recText = '🟢 شراء قوي';
+                    recClass = 'rec-buy';
+                } else {
+                    recText = '🟢 شراء';
+                    recClass = 'rec-buy';
+                }
+                verdictText = `📈 التوصية: شراء (ثقة ${confidence}%)\nالسبب: ${analysisPoints.filter(p => p.includes('شراء') || p.includes('صاعد') || p.includes('دعم')).slice(0, 3).join('، ')}`;
+            } else if (sellScore >= 50 && sellScore > buyScore) {
+                recommendation = 'sell';
+                if (sellScore >= 70) {
+                    recText = '🔴 بيع قوي';
+                    recClass = 'rec-sell';
+                } else {
+                    recText = '🔴 بيع';
+                    recClass = 'rec-sell';
+                }
+                verdictText = `📉 التوصية: بيع (ثقة ${confidence}%)\nالسبب: ${analysisPoints.filter(p => p.includes('بيع') || p.includes('هابط') || p.includes('مقاومة')).slice(0, 3).join('، ')}`;
+            } else {
+                verdictText = `⚖️ التوصية: انتظار (ثقة ${confidence}%)\nالسبب: المؤشرات متضاربة (${analysisPoints.filter(p => !p.includes('شراء') && !p.includes('بيع')).slice(0, 3).join('، ')}). الأفضل الانتظار حتى يتضح الاتجاه.`;
+            }
+            
+            document.getElementById('recBox').className = `recommendation-box ${recClass}`;
+            document.getElementById('recText').innerHTML = recText;
+            document.getElementById('verdict').innerHTML = verdictText.replace(/\n/g, '<br>');
+            
+            // تحديث المؤشرات
+            document.getElementById('rsi').innerHTML = rsi.toFixed(1);
+            document.getElementById('rsi').className = `ind-value ${rsi < 45 ? 'bullish' : (rsi > 55 ? 'bearish' : 'neutral')}`;
+            document.getElementById('macd').innerHTML = macd > 0 ? `+${macd.toFixed(4)}` : macd.toFixed(4);
+            document.getElementById('macd').className = `ind-value ${macd > 0 ? 'bullish' : 'bearish'}`;
+            document.getElementById('trendInd').innerHTML = ema7 > ema25 ? 'صاعد 📈' : 'هابط 📉';
+            document.getElementById('trendInd').className = `ind-value ${ema7 > ema25 ? 'bullish' : 'bearish'}`;
+            
+            // تحليل الزخم
+            const momentum = currentPrice > calcEMA(prices.slice(-10), 5) ? 'إيجابي 🔥' : 'سلبي ❄️';
+            document.getElementById('momentum').innerHTML = momentum;
+            document.getElementById('momentum').className = `ind-value ${currentPrice > calcEMA(prices.slice(-10), 5) ? 'bullish' : 'bearish'}`;
+            
+            // تحديث مستويات الدعم والمقاومة
+            document.getElementById('support1').innerHTML = `$${levels.support1.toLocaleString()}`;
+            document.getElementById('support2').innerHTML = `$${levels.support2.toLocaleString()}`;
+            document.getElementById('support3').innerHTML = `$${levels.support3.toLocaleString()}`;
+            document.getElementById('resistance1').innerHTML = `$${levels.resistance1.toLocaleString()}`;
+            document.getElementById('resistance2').innerHTML = `$${levels.resistance2.toLocaleString()}`;
+            document.getElementById('resistance3').innerHTML = `$${levels.resistance3.toLocaleString()}`;
+            
+            // استراتيجية الدخول
+            const isBuy = recommendation === 'buy';
+            const entry = currentPrice;
+            const stopLoss = isBuy ? entry * 0.985 : entry * 1.015;
+            const tp1 = isBuy ? entry * 1.02 : entry * 0.98;
+            const tp2 = isBuy ? entry * 1.04 : entry * 0.96;
+            const tp3 = isBuy ? entry * 1.06 : entry * 0.94;
+            
+            document.getElementById('entry').innerHTML = `$${entry.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+            document.getElementById('sl').innerHTML = `$${stopLoss.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+            document.getElementById('tp1').innerHTML = `$${tp1.toLocaleString(undefined, {minimumFractionDigits: 0})}`;
+            document.getElementById('tp2').innerHTML = `$${tp2.toLocaleString(undefined, {minimumFractionDigits: 0})}`;
+            document.getElementById('tp3').innerHTML = `$${tp3.toLocaleString(undefined, {minimumFractionDigits: 0})}`;
+            
+            return { recommendation, confidence };
         }
-
+        
+        // تحديث كل شيء
+        async function updateAll() {
+            if (currentPrice && priceHistory.length) {
+                await comprehensiveAnalysis();
+            }
+        }
+        
         // WebSocket للسعر الحي
         function startWebSocket() {
             const ws = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@trade');
-            
             ws.onmessage = (event) => {
                 const data = JSON.parse(event.data);
-                const price = parseFloat(data.p);
-                currentPrice = price;
-                
-                document.getElementById('price').innerHTML = `$${price.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
-                
+                currentPrice = parseFloat(data.p);
+                document.getElementById('price').innerHTML = `$${currentPrice.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
                 if (lastPrice) {
-                    const change = ((price - lastPrice) / lastPrice) * 100;
-                    const changeClass = change >= 0 ? 'positive' : 'negative';
+                    const change = ((currentPrice - lastPrice) / lastPrice) * 100;
+                    const changeClass = change >= 0 ? 'up' : 'down';
                     const changeSymbol = change >= 0 ? '▲' : '▼';
                     document.getElementById('changeDisplay').innerHTML = `<div class="change ${changeClass}">${changeSymbol} ${Math.abs(change).toFixed(2)}%</div>`;
                 }
-                lastPrice = price;
-                
-                if (priceHistory.length) {
-                    updateAll();
-                }
+                lastPrice = currentPrice;
+                if (priceHistory.length) updateAll();
             };
-            
-            ws.onerror = () => console.log('WebSocket error');
             ws.onclose = () => setTimeout(startWebSocket, 5000);
         }
-
-        async function refreshAll() {
+        
+        async function forceRefresh() {
             document.getElementById('timestamp').innerHTML = `🕐 جاري التحديث...`;
-            await fetchHistory();
-            updateAll();
-            document.getElementById('timestamp').innerHTML = `🕐 آخر تحديث: ${new Date().toLocaleTimeString('ar-EG')} | بيانات Binance`;
+            await fetchData();
+            await updateAll();
+            document.getElementById('timestamp').innerHTML = `🕐 آخر تحديث: ${new Date().toLocaleTimeString('ar-EG')}`;
         }
-
+        
         async function init() {
-            await fetchHistory();
+            await fetchData();
             startWebSocket();
-            updateAll();
+            await updateAll();
             document.getElementById('timestamp').innerHTML = `🕐 ${new Date().toLocaleTimeString('ar-EG')} | WebSocket متصل`;
-            
-            setInterval(async () => {
-                await fetchHistory();
-                updateAll();
-            }, 60000);
+            setInterval(async () => { await fetchData(); await updateAll(); }, 60000);
         }
-
+        
         init();
     </script>
 </body>
