@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>BTC Real | تحليل البيتكوين الحقيقي</title>
+    <title>BTC Data | بيانات البيتكوين الحقيقية</title>
     <style>
         * {
             margin: 0;
@@ -12,7 +12,7 @@
         }
         body {
             background: #0a0a0f;
-            font-family: system-ui, -apple-system, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
             padding: 16px;
             min-height: 100vh;
         }
@@ -20,179 +20,287 @@
             max-width: 550px;
             margin: 0 auto;
         }
-        .card {
+        
+        /* Header */
+        .header {
             background: #111118;
             border-radius: 32px;
             padding: 20px;
             margin-bottom: 16px;
-            border: 1px solid #222;
+            text-align: center;
+            border: 1px solid #1a1a22;
         }
         h1 {
             color: #f7931a;
             font-size: 1.4rem;
-            text-align: center;
         }
         .sub {
-            text-align: center;
             color: #666;
             font-size: 0.6rem;
             margin-top: 5px;
         }
-        .live-badge {
-            background: #00ff8822;
-            color: #00ff88;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.6rem;
-            text-align: center;
+        .live-dot {
             display: inline-block;
-            margin-top: 10px;
+            width: 8px;
+            height: 8px;
+            background: #00ff88;
+            border-radius: 50%;
+            margin-right: 6px;
+            animation: pulse 1.5s infinite;
         }
-        .price {
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        /* السعر */
+        .price-card {
+            background: #111118;
+            border-radius: 32px;
+            padding: 24px;
+            margin-bottom: 16px;
             text-align: center;
-            padding: 10px 0;
+            border: 1px solid #1a1a22;
         }
         .price-value {
             font-size: 2.2rem;
-            font-weight: bold;
+            font-weight: 800;
             color: #f7931a;
             font-family: monospace;
+            letter-spacing: -0.5px;
         }
         .change {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
             padding: 4px 12px;
             border-radius: 20px;
             margin-top: 8px;
+            font-weight: 600;
         }
-        .up { background: #00ff8822; color: #00ff88; }
-        .down { background: #ff444422; color: #ff4444; }
+        .positive { background: #00ff8822; color: #00ff88; }
+        .negative { background: #ff444422; color: #ff4444; }
         
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .stat {
+            flex: 1;
+            background: #0a0a10;
+            border-radius: 20px;
+            padding: 10px;
+            text-align: center;
+        }
+        .stat-label {
+            font-size: 0.55rem;
+            color: #666;
+        }
+        .stat-value {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-top: 4px;
+        }
+        
+        /* مؤشرات */
+        .indicators-card {
+            background: #111118;
+            border-radius: 32px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border: 1px solid #1a1a22;
+        }
+        .section-title {
+            font-size: 0.7rem;
+            color: #888;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
         .indicators-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
-            margin-top: 10px;
         }
-        .ind {
+        .indicator-item {
+            background: #0a0a10;
+            border-radius: 24px;
+            padding: 14px;
+            text-align: center;
+        }
+        .indicator-name {
+            font-size: 0.6rem;
+            color: #888;
+        }
+        .indicator-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+            font-family: monospace;
+            margin-top: 6px;
+        }
+        .value-up { color: #00ff88; }
+        .value-down { color: #ff4444; }
+        .value-neutral { color: #ffd700; }
+        
+        .indicator-desc {
+            font-size: 0.55rem;
+            margin-top: 6px;
+            color: #555;
+        }
+        
+        /* تحليل بسيط */
+        .analysis-card {
+            background: #111118;
+            border-radius: 32px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border: 1px solid #1a1a22;
+        }
+        .analysis-summary {
             background: #0a0a10;
             border-radius: 20px;
-            padding: 12px;
+            padding: 16px;
             text-align: center;
         }
-        .ind-name {
-            font-size: 0.6rem;
-            color: #666;
-        }
-        .ind-value {
-            font-size: 1.2rem;
+        .analysis-direction {
+            font-size: 1.1rem;
             font-weight: bold;
-            margin-top: 5px;
         }
-        .buy-color { color: #00ff88; }
-        .sell-color { color: #ff4444; }
-        .neutral-color { color: #ffd700; }
+        .direction-up { color: #00ff88; }
+        .direction-down { color: #ff4444; }
+        .direction-neutral { color: #ffd700; }
+        .analysis-details {
+            font-size: 0.7rem;
+            color: #aaa;
+            margin-top: 12px;
+            line-height: 1.6;
+            text-align: right;
+        }
         
-        .signal-box {
-            text-align: center;
+        /* المستويات */
+        .levels-card {
+            background: #111118;
+            border-radius: 32px;
             padding: 20px;
-            border-radius: 28px;
-            margin: 10px 0;
+            margin-bottom: 16px;
+            border: 1px solid #1a1a22;
         }
-        .signal-buy { background: #00b894; color: white; }
-        .signal-sell { background: #d63031; color: white; }
-        .signal-neutral { background: #2c3e50; color: #ffd700; }
-        .signal-text {
-            font-size: 1.4rem;
-            font-weight: bold;
-        }
-        
         .level-row {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             padding: 10px 0;
             border-bottom: 1px solid #1a1a22;
         }
+        .level-label {
+            font-size: 0.7rem;
+            color: #888;
+        }
+        .level-entry { color: #ffd700; font-weight: bold; }
+        .level-stop { color: #ff6666; font-weight: bold; }
+        .level-tp { color: #00ff88; font-weight: bold; }
         
-        button {
+        /* أزرار */
+        .refresh-btn {
             width: 100%;
             padding: 14px;
-            background: #f7931a;
+            background: linear-gradient(135deg, #f7931a, #ffd700);
             border: none;
-            border-radius: 30px;
+            border-radius: 40px;
             font-weight: bold;
+            font-size: 1rem;
+            color: #0a0a0f;
             cursor: pointer;
-            margin-top: 10px;
+            margin-bottom: 12px;
         }
         .timestamp {
             text-align: center;
             color: #555;
             font-size: 0.55rem;
-            margin-top: 12px;
         }
-        .note {
+        .disclaimer {
             background: #1a1a22;
-            border-radius: 16px;
-            padding: 10px;
-            font-size: 0.65rem;
-            color: #888;
+            border-radius: 20px;
+            padding: 12px;
+            margin-top: 16px;
+            font-size: 0.6rem;
+            color: #666;
             text-align: center;
-            margin-top: 15px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="card">
-            <h1>₿ BTC Real</h1>
-            <div class="sub">تحليل حقيقي | بيانات مباشرة من Binance</div>
-            <div style="text-align: center; margin-top: 8px;">
-                <span class="live-badge">● LIVE WEBSOCKET</span>
+        <div class="header">
+            <h1>₿ BTC Data</h1>
+            <div class="sub"><span class="live-dot"></span> بيانات حقيقية من Binance | ليست نصيحة استثمارية</div>
+        </div>
+
+        <!-- السعر -->
+        <div class="price-card">
+            <div class="price-value" id="price">$---</div>
+            <div id="changeDisplay"></div>
+            <div class="stats-row">
+                <div class="stat"><div class="stat-label">أعلى 24h</div><div class="stat-value" id="high">---</div></div>
+                <div class="stat"><div class="stat-label">أدنى 24h</div><div class="stat-value" id="low">---</div></div>
+                <div class="stat"><div class="stat-label">حجم 24h</div><div class="stat-value" id="volume">---</div></div>
             </div>
         </div>
 
-        <div class="card">
-            <div class="price">
-                <div class="price-value" id="price">$---</div>
-                <div id="changeDisplay"></div>
-            </div>
-            <div style="display: flex; justify-content: space-between; margin-top: 15px;">
-                <div><span style="color:#666; font-size:0.6rem;">24h High</span><br><span id="high" style="color:#ffd700;">---</span></div>
-                <div><span style="color:#666; font-size:0.6rem;">24h Low</span><br><span id="low" style="color:#ffd700;">---</span></div>
-                <div><span style="color:#666; font-size:0.6rem;">Volume</span><br><span id="volume" style="color:#ffd700;">---</span></div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div style="font-size:0.7rem; color:#888; margin-bottom:12px;">📊 المؤشرات الفنية (من بيانات Binance)</div>
+        <!-- المؤشرات -->
+        <div class="indicators-card">
+            <div class="section-title"><span>📊</span> المؤشرات الفنية (حقيقية من Binance)</div>
             <div class="indicators-grid">
-                <div class="ind"><div class="ind-name">RSI (14)</div><div class="ind-value" id="rsi">--</div></div>
-                <div class="ind"><div class="ind-name">MACD</div><div class="ind-value" id="macd">--</div></div>
-                <div class="ind"><div class="ind-name">EMA 7/25</div><div class="ind-value" id="ema">--</div></div>
-                <div class="ind"><div class="ind-name">Stoch RSI</div><div class="ind-value" id="stoch">--</div></div>
+                <div class="indicator-item">
+                    <div class="indicator-name">RSI (14)</div>
+                    <div class="indicator-value" id="rsiVal">--</div>
+                    <div class="indicator-desc" id="rsiDesc">---</div>
+                </div>
+                <div class="indicator-item">
+                    <div class="indicator-name">MACD</div>
+                    <div class="indicator-value" id="macdVal">--</div>
+                    <div class="indicator-desc" id="macdDesc">---</div>
+                </div>
+                <div class="indicator-item">
+                    <div class="indicator-name">المتوسطات</div>
+                    <div class="indicator-value" id="emaVal">--</div>
+                    <div class="indicator-desc" id="emaDesc">---</div>
+                </div>
+                <div class="indicator-item">
+                    <div class="indicator-name">ستوكاستيك</div>
+                    <div class="indicator-value" id="stoVal">--</div>
+                    <div class="indicator-desc" id="stoDesc">---</div>
+                </div>
             </div>
         </div>
 
-        <div class="card" id="signalCard">
-            <div class="signal-box signal-neutral" id="signalBox">
-                <div class="signal-text" id="signalText">🟡 انتظار</div>
+        <!-- تحليل مبسط -->
+        <div class="analysis-card">
+            <div class="analysis-summary">
+                <div class="analysis-direction" id="direction">🟡 تحليل السوق</div>
+                <div class="analysis-details" id="analysisDetails">جاري تحليل البيانات...</div>
             </div>
-            <div style="margin-top: 10px; font-size:0.7rem; color:#aaa; text-align:center;" id="confidence">الثقة: --%</div>
-            <div id="analysisText" style="background:#0a0a10; border-radius:16px; padding:10px; margin-top:12px; font-size:0.65rem; color:#ccc;"></div>
         </div>
 
-        <div class="card">
-            <div style="font-size:0.7rem; color:#888; margin-bottom:12px;">🎯 مستويات التداول</div>
-            <div class="level-row"><span>📌 نقطة الدخول</span><span id="entry" style="color:#ffd700;">---</span></div>
-            <div class="level-row"><span>🛑 وقف الخسارة</span><span id="sl" style="color:#ff6666;">---</span></div>
-            <div class="level-row"><span>🎯 TP1 (2%)</span><span id="tp1" style="color:#00ff88;">---</span></div>
-            <div class="level-row"><span>🎯 TP2 (4%)</span><span id="tp2" style="color:#00ff88;">---</span></div>
-            <div class="level-row"><span>🎯 TP3 (6%)</span><span id="tp3" style="color:#00ff88;">---</span></div>
+        <!-- مستويات الدخول والخروج -->
+        <div class="levels-card">
+            <div class="section-title"><span>🎯</span> مستويات تداول مقترحة (للتعلم فقط)</div>
+            <div class="level-row"><span class="level-label">📌 السعر الحالي</span><span class="level-entry" id="entry">$---</span></div>
+            <div class="level-row"><span class="level-label">🛑 وقف خسارة مقترح</span><span class="level-stop" id="sl">$---</span></div>
+            <div class="level-row"><span class="level-label">🎯 هدف أول (2%)</span><span class="level-tp" id="tp1">$---</span></div>
+            <div class="level-row"><span class="level-label">🎯 هدف ثاني (4%)</span><span class="level-tp" id="tp2">$---</span></div>
+            <div class="level-row"><span class="level-label">🎯 هدف ثالث (6%)</span><span class="level-tp" id="tp3">$---</span></div>
         </div>
 
-        <button onclick="forceUpdate()">⟳ تحديث التحليل</button>
+        <button class="refresh-btn" onclick="refreshAll()">⟳ تحديث البيانات</button>
         <div class="timestamp" id="timestamp">--:--:--</div>
-        <div class="note">
-            💡 البيانات والتحليلات من Binance API | السعر عبر WebSocket (لحظي) | المؤشرات من بيانات حقيقية
+        <div class="disclaimer">
+            ⚠️ هذه البيانات والمؤشرات هي أدوات تحليلية فقط<br>
+            لا تقدم أي ضمانات للربح. التداول ينطوي على مخاطر عالية.
         </div>
     </div>
 
@@ -200,30 +308,31 @@
         let currentPrice = null;
         let lastPrice = null;
         let priceHistory = [];
-        
-        // جلب البيانات التاريخية (حقيقية من Binance)
-        async function fetchRealData() {
+        let lastUpdateTime = null;
+
+        // جلب البيانات التاريخية
+        async function fetchHistory() {
             try {
-                const klineRes = await fetch('https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1h&limit=60');
-                const klineData = await klineRes.json();
-                priceHistory = klineData.map(c => parseFloat(c[4]));
+                const res = await fetch('https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1h&limit=60');
+                const data = await res.json();
+                priceHistory = data.map(c => parseFloat(c[4]));
                 
                 const tickerRes = await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT');
                 const ticker = await tickerRes.json();
+                
                 document.getElementById('high').innerHTML = `$${parseFloat(ticker.highPrice).toLocaleString()}`;
                 document.getElementById('low').innerHTML = `$${parseFloat(ticker.lowPrice).toLocaleString()}`;
                 document.getElementById('volume').innerHTML = `${(parseFloat(ticker.volume) / 1000).toFixed(0)}K`;
                 
                 return true;
             } catch(e) {
-                console.error(e);
                 return false;
             }
         }
-        
-        // RSI - معادلة حقيقية
+
+        // RSI
         function calcRSI(prices, period = 14) {
-            if (prices.length < period + 1) return 50;
+            if (prices.length < period + 1) return { value: 50, interpretation: 'بيانات غير كافية' };
             let gains = 0, losses = 0;
             for (let i = prices.length - period; i < prices.length; i++) {
                 const diff = prices[i] - prices[i-1];
@@ -232,10 +341,20 @@
             }
             const avgGain = gains / period;
             const avgLoss = losses / period;
-            if (avgLoss === 0) return 100;
-            return 100 - (100 / (1 + (avgGain / avgLoss)));
+            if (avgLoss === 0) return { value: 100, interpretation: 'قوي جداً - تشبع شرائي' };
+            const rsi = 100 - (100 / (1 + (avgGain / avgLoss)));
+            
+            let interpretation = '';
+            if (rsi < 30) interpretation = 'منخفض جداً - منطقة تشبع شرائي (قد يكون شراء)';
+            else if (rsi < 40) interpretation = 'منخفض - ميل للصعود';
+            else if (rsi < 50) interpretation = 'متوسط منخفض - محايد مائل للشراء';
+            else if (rsi < 60) interpretation = 'متوسط مرتفع - محايد مائل للبيع';
+            else if (rsi < 70) interpretation = 'مرتفع - ميل للهبوط';
+            else interpretation = 'مرتفع جداً - منطقة تشبع بيعي (قد يكون بيع)';
+            
+            return { value: rsi, interpretation };
         }
-        
+
         // EMA
         function calcEMA(prices, period) {
             if (prices.length < period) return prices[prices.length-1];
@@ -246,27 +365,48 @@
             }
             return ema;
         }
-        
+
         // MACD
         function calcMACD(prices) {
-            if (prices.length < 35) return 0;
-            return calcEMA(prices, 12) - calcEMA(prices, 26);
+            if (prices.length < 35) return { value: 0, interpretation: 'بيانات غير كافية' };
+            const ema12 = calcEMA(prices, 12);
+            const ema26 = calcEMA(prices, 26);
+            const macd = ema12 - ema26;
+            
+            let interpretation = '';
+            if (macd > 0.003) interpretation = 'زخم صاعد قوي جداً';
+            else if (macd > 0.001) interpretation = 'زخم صاعد';
+            else if (macd > 0) interpretation = 'زخم صاعد ضعيف';
+            else if (macd > -0.001) interpretation = 'زخم هابط ضعيف';
+            else if (macd > -0.003) interpretation = 'زخم هابط';
+            else interpretation = 'زخم هابط قوي جداً';
+            
+            return { value: macd, interpretation };
         }
-        
+
         // Stochastic
         function calcStochastic(prices, period = 14) {
-            if (prices.length < period) return 50;
+            if (prices.length < period) return { value: 50, interpretation: 'بيانات غير كافية' };
             const last = prices.slice(-period);
             const high = Math.max(...last);
             const low = Math.min(...last);
             const current = prices[prices.length-1];
-            if (high === low) return 50;
-            return ((current - low) / (high - low)) * 100;
+            if (high === low) return { value: 50, interpretation: 'سعر ثابت' };
+            const stoch = ((current - low) / (high - low)) * 100;
+            
+            let interpretation = '';
+            if (stoch < 20) interpretation = 'منخفض جداً - منطقة شراء';
+            else if (stoch < 40) interpretation = 'منخفض - قد يصعد';
+            else if (stoch < 60) interpretation = 'متوسط - محايد';
+            else if (stoch < 80) interpretation = 'مرتفع - قد يهبط';
+            else interpretation = 'مرتفع جداً - منطقة بيع';
+            
+            return { value: stoch, interpretation };
         }
-        
-        // تحليل الإشارة
-        function analyze() {
-            if (!priceHistory.length || !currentPrice) return null;
+
+        // تحديث كل شيء
+        async function updateAll() {
+            if (!priceHistory.length || !currentPrice) return;
             
             const prices = priceHistory;
             const rsi = calcRSI(prices);
@@ -275,112 +415,70 @@
             const ema7 = calcEMA(prices, 7);
             const ema25 = calcEMA(prices, 25);
             
-            let buyScore = 0, sellScore = 0;
-            let reasons = [];
+            // تحديث RSI
+            document.getElementById('rsiVal').innerHTML = rsi.value.toFixed(1);
+            document.getElementById('rsiVal').className = `indicator-value ${rsi.value < 40 ? 'value-up' : (rsi.value > 60 ? 'value-down' : 'value-neutral')}`;
+            document.getElementById('rsiDesc').innerHTML = rsi.interpretation;
             
-            // RSI
-            if (rsi < 35) { buyScore += 35; reasons.push(`RSI ${rsi.toFixed(0)}: منخفض - فرصة شراء`); }
-            else if (rsi < 45) { buyScore += 15; reasons.push(`RSI ${rsi.toFixed(0)}: مائل للشراء`); }
-            else if (rsi > 65) { sellScore += 35; reasons.push(`RSI ${rsi.toFixed(0)}: مرتفع - فرصة بيع`); }
-            else if (rsi > 55) { sellScore += 15; reasons.push(`RSI ${rsi.toFixed(0)}: مائل للبيع`); }
-            else { reasons.push(`RSI ${rsi.toFixed(0)}: محايد`); }
+            // تحديث MACD
+            document.getElementById('macdVal').innerHTML = macd.value > 0 ? `+${macd.value.toFixed(4)}` : macd.value.toFixed(4);
+            document.getElementById('macdVal').className = `indicator-value ${macd.value > 0 ? 'value-up' : 'value-down'}`;
+            document.getElementById('macdDesc').innerHTML = macd.interpretation;
             
-            // MACD
-            if (macd > 0.002) { buyScore += 30; reasons.push(`MACD: زخم صاعد قوي`); }
-            else if (macd > 0) { buyScore += 15; reasons.push(`MACD: زخم صاعد`); }
-            else if (macd < -0.002) { sellScore += 30; reasons.push(`MACD: زخم هابط قوي`); }
-            else if (macd < 0) { sellScore += 15; reasons.push(`MACD: زخم هابط`); }
+            // تحديث المتوسطات
+            const emaDiff = ema7 > ema25 ? `EMA7 (${Math.round(ema7)}) > EMA25 (${Math.round(ema25)}) - صاعد` : `EMA7 (${Math.round(ema7)}) < EMA25 (${Math.round(ema25)}) - هابط`;
+            document.getElementById('emaVal').innerHTML = `${Math.round(ema7)} / ${Math.round(ema25)}`;
+            document.getElementById('emaVal').className = `indicator-value ${ema7 > ema25 ? 'value-up' : 'value-down'}`;
+            document.getElementById('emaDesc').innerHTML = emaDiff;
             
-            // المتوسطات
-            if (ema7 > ema25) { buyScore += 25; reasons.push(`الاتجاه: صاعد (EMA7 > EMA25)`); }
-            else { sellScore += 25; reasons.push(`الاتجاه: هابط (EMA7 < EMA25)`); }
+            // تحديث Stochastic
+            document.getElementById('stoVal').innerHTML = stoch.value.toFixed(0);
+            document.getElementById('stoVal').className = `indicator-value ${stoch.value < 40 ? 'value-up' : (stoch.value > 60 ? 'value-down' : 'value-neutral')}`;
+            document.getElementById('stoDesc').innerHTML = stoch.interpretation;
             
-            // Stochastic
-            if (stoch < 25) { buyScore += 20; reasons.push(`Stochastic ${stoch.toFixed(0)}: منطقة شراء`); }
-            else if (stoch > 75) { sellScore += 20; reasons.push(`Stochastic ${stoch.toFixed(0)}: منطقة بيع`); }
+            // التحليل العام (بدون إشارات قطعية)
+            let upCount = 0;
+            let downCount = 0;
             
-            const total = buyScore + sellScore;
-            const confidence = total > 0 ? Math.round((Math.max(buyScore, sellScore) / 85) * 100) : 0;
+            if (rsi.value < 40) upCount++;
+            if (rsi.value > 60) downCount++;
+            if (macd.value > 0) upCount++;
+            if (macd.value < 0) downCount++;
+            if (ema7 > ema25) upCount++;
+            if (ema7 < ema25) downCount++;
+            if (stoch.value < 40) upCount++;
+            if (stoch.value > 60) downCount++;
             
-            let signal = 'neutral';
-            let signalText = '🟡 انتظار';
-            let signalClass = 'signal-neutral';
-            let side = null;
+            let directionText = '';
+            let directionClass = '';
+            let analysisText = '';
             
-            if (buyScore >= 45 && buyScore > sellScore) {
-                side = 'buy';
-                if (buyScore >= 65) {
-                    signal = 'strong-buy';
-                    signalText = '🟢 شراء قوي';
-                    signalClass = 'signal-buy';
-                } else {
-                    signal = 'buy';
-                    signalText = '🟢 شراء';
-                    signalClass = 'signal-buy';
-                }
-            } else if (sellScore >= 45 && sellScore > buyScore) {
-                side = 'sell';
-                if (sellScore >= 65) {
-                    signal = 'strong-sell';
-                    signalText = '🔴 بيع قوي';
-                    signalClass = 'signal-sell';
-                } else {
-                    signal = 'sell';
-                    signalText = '🔴 بيع';
-                    signalClass = 'signal-sell';
-                }
+            if (upCount >= 5) {
+                directionText = '📈 ميل للصعود';
+                directionClass = 'direction-up';
+                analysisText = `من أصل 4 مؤشرات، ${upCount} تشير إلى صعود و ${downCount} تشير إلى هبوط. المؤشرات تميل للإيجابية حالياً.`;
+            } else if (downCount >= 5) {
+                directionText = '📉 ميل للهبوط';
+                directionClass = 'direction-down';
+                analysisText = `من أصل 4 مؤشرات، ${downCount} تشير إلى هبوط و ${upCount} تشير إلى صعود. المؤشرات تميل للسلبية حالياً.`;
+            } else {
+                directionText = '🟡 مؤشرات متضاربة';
+                directionClass = 'direction-neutral';
+                analysisText = `المؤشرات غير واضحة (صعود:${upCount} / هبوط:${downCount}). السوق في حالة تضارب، الأفضل الانتظار حتى يتضح الاتجاه.`;
             }
             
-            // تحديث واجهة المؤشرات
-            const rsiClass = rsi < 45 ? 'buy-color' : (rsi > 55 ? 'sell-color' : 'neutral-color');
-            const macdClass = macd > 0 ? 'buy-color' : (macd < 0 ? 'sell-color' : 'neutral-color');
-            const emaClass = ema7 > ema25 ? 'buy-color' : 'sell-color';
-            const stochClass = stoch < 30 ? 'buy-color' : (stoch > 70 ? 'sell-color' : 'neutral-color');
+            document.getElementById('direction').innerHTML = directionText;
+            document.getElementById('direction').className = `analysis-direction ${directionClass}`;
+            document.getElementById('analysisDetails').innerHTML = analysisText;
             
-            document.getElementById('rsi').innerHTML = rsi.toFixed(1);
-            document.getElementById('rsi').className = `ind-value ${rsiClass}`;
-            document.getElementById('macd').innerHTML = macd > 0 ? `+${macd.toFixed(4)}` : macd.toFixed(4);
-            document.getElementById('macd').className = `ind-value ${macdClass}`;
-            document.getElementById('ema').innerHTML = `${Math.round(ema7)} / ${Math.round(ema25)}`;
-            document.getElementById('ema').className = `ind-value ${emaClass}`;
-            document.getElementById('stoch').innerHTML = stoch.toFixed(0);
-            document.getElementById('stoch').className = `ind-value ${stochClass}`;
-            
-            // الإشارة
-            document.getElementById('signalText').innerHTML = signalText;
-            document.getElementById('signalBox').className = `signal-box ${signalClass}`;
-            document.getElementById('confidence').innerHTML = `الثقة: ${confidence}% | شراء:${buyScore} | بيع:${sellScore}`;
-            
-            let summary = '';
-            if (buyScore > sellScore + 15) summary = '📈 المؤشرات تميل بقوة للشراء';
-            else if (sellScore > buyScore + 15) summary = '📉 المؤشرات تميل بقوة للبيع';
-            else if (buyScore > sellScore) summary = '📈 ميل خفيف للشراء، انتظر تأكيد';
-            else if (sellScore > buyScore) summary = '📉 ميل خفيف للبيع، انتظر تأكيد';
-            else summary = '⚖️ مؤشرات متضاربة، الأفضل الانتظار';
-            
-            document.getElementById('analysisText').innerHTML = `
-                <strong>📊 تحليل المؤشرات:</strong><br>
-                ${reasons.slice(0, 4).map(r => `• ${r}`).join('<br>')}<br><br>
-                <strong>💡 الخلاصة:</strong> ${summary}
-            `;
-            
-            // المستويات
-            const isBuy = side === 'buy';
-            const entry = currentPrice;
-            const stopLoss = isBuy ? entry * 0.985 : entry * 1.015;
-            const tp1 = isBuy ? entry * 1.02 : entry * 0.98;
-            const tp2 = isBuy ? entry * 1.04 : entry * 0.96;
-            const tp3 = isBuy ? entry * 1.06 : entry * 0.94;
-            
-            document.getElementById('entry').innerHTML = `$${entry.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
-            document.getElementById('sl').innerHTML = `$${stopLoss.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
-            document.getElementById('tp1').innerHTML = `$${tp1.toLocaleString(undefined, {minimumFractionDigits: 0})}`;
-            document.getElementById('tp2').innerHTML = `$${tp2.toLocaleString(undefined, {minimumFractionDigits: 0})}`;
-            document.getElementById('tp3').innerHTML = `$${tp3.toLocaleString(undefined, {minimumFractionDigits: 0})}`;
-            
-            return { signal, confidence };
+            // تحديث المستويات (تعليمية فقط)
+            document.getElementById('entry').innerHTML = `$${currentPrice.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+            document.getElementById('sl').innerHTML = `$${(currentPrice * 0.985).toLocaleString(undefined, {minimumFractionDigits: 2})} (1.5%)`;
+            document.getElementById('tp1').innerHTML = `$${(currentPrice * 1.02).toLocaleString(undefined, {minimumFractionDigits: 0})} (2%)`;
+            document.getElementById('tp2').innerHTML = `$${(currentPrice * 1.04).toLocaleString(undefined, {minimumFractionDigits: 0})} (4%)`;
+            document.getElementById('tp3').innerHTML = `$${(currentPrice * 1.06).toLocaleString(undefined, {minimumFractionDigits: 0})} (6%)`;
         }
-        
+
         // WebSocket للسعر الحي
         function startWebSocket() {
             const ws = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@trade');
@@ -394,42 +492,41 @@
                 
                 if (lastPrice) {
                     const change = ((price - lastPrice) / lastPrice) * 100;
-                    const changeClass = change >= 0 ? 'up' : 'down';
+                    const changeClass = change >= 0 ? 'positive' : 'negative';
                     const changeSymbol = change >= 0 ? '▲' : '▼';
-                    document.getElementById('changeDisplay').innerHTML = `<span class="change ${changeClass}">${changeSymbol} ${Math.abs(change).toFixed(2)}%</span>`;
+                    document.getElementById('changeDisplay').innerHTML = `<div class="change ${changeClass}">${changeSymbol} ${Math.abs(change).toFixed(2)}%</div>`;
                 }
                 lastPrice = price;
                 
                 if (priceHistory.length) {
-                    analyze();
+                    updateAll();
                 }
             };
             
             ws.onerror = () => console.log('WebSocket error');
             ws.onclose = () => setTimeout(startWebSocket, 5000);
         }
-        
-        async function forceUpdate() {
+
+        async function refreshAll() {
             document.getElementById('timestamp').innerHTML = `🕐 جاري التحديث...`;
-            await fetchRealData();
-            analyze();
-            document.getElementById('timestamp').innerHTML = `🕐 ${new Date().toLocaleTimeString('ar-EG')} | تم التحديث`;
+            await fetchHistory();
+            updateAll();
+            document.getElementById('timestamp').innerHTML = `🕐 آخر تحديث: ${new Date().toLocaleTimeString('ar-EG')} | بيانات Binance`;
         }
-        
+
         async function init() {
-            await fetchRealData();
+            await fetchHistory();
             startWebSocket();
-            analyze();
-            document.getElementById('timestamp').innerHTML = `🕐 ${new Date().toLocaleTimeString('ar-EG')} | WebSocket متصل + بيانات Binance`;
+            updateAll();
+            document.getElementById('timestamp').innerHTML = `🕐 ${new Date().toLocaleTimeString('ar-EG')} | WebSocket متصل`;
             
-            // تحديث البيانات التاريخية كل دقيقة
             setInterval(async () => {
-                await fetchRealData();
-                analyze();
+                await fetchHistory();
+                updateAll();
             }, 60000);
         }
-        
+
         init();
     </script>
 </body>
-</html>
+    </html>
